@@ -1,0 +1,17 @@
+{
+  "SLAYTHENANA-NANA_DUMMY.aromaPrinciple": "[sine][blue]……等待……[/blue][/sine]",
+  "SLAYTHENANA-NANA_DUMMY.banter.alive.endTurnPing": "……",
+  "SLAYTHENANA-NANA_DUMMY.banter.dead.endTurnPing": "……",
+  "SLAYTHENANA-NANA_DUMMY.cardsModifierDescription": "训练人偶的卡牌现在会出现在奖励和商店中。",
+  "SLAYTHENANA-NANA_DUMMY.cardsModifierTitle": "训练人偶卡牌",
+  "SLAYTHENANA-NANA_DUMMY.description": "[gold]训练人偶[/gold]在NANA中经常被欺负，现在它来到杀戮尖塔中来欺负别人了。",
+  "SLAYTHENANA-NANA_DUMMY.eventDeathPrevention": "稻草人不惧死亡！……",
+  "SLAYTHENANA-NANA_DUMMY.goldMonologue": "[sine]这些金币……可以买蜘蛛甜甜圈……[/sine]",
+  "SLAYTHENANA-NANA_DUMMY.possessiveAdjective": "它的",
+  "SLAYTHENANA-NANA_DUMMY.pronounObject": "它",
+  "SLAYTHENANA-NANA_DUMMY.pronounPossessive": "它的",
+  "SLAYTHENANA-NANA_DUMMY.pronounSubject": "它",
+  "SLAYTHENANA-NANA_DUMMY.title": "训练人偶",
+  "SLAYTHENANA-NANA_DUMMY.titleObject": "训练人偶",
+  "SLAYTHENANA-NANA_DUMMY.unlockText": "用[pink]{Prerequisite}[/pink]进行一局游戏来解锁这个角色。"
+}

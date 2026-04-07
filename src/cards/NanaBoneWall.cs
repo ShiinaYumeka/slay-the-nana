@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Models;
+
+namespace SlayTheNANA;
+
+public sealed class NanaBoneWall: CardModel
+{
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(5m, ValueProp.Move), new RepeatVar(2)];
+
+	public NanaBoneWall()
+		: base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+	{
+	}
+
+	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+	{
+		for (int i = 0; i < base.DynamicVars.Repeat.IntValue; i++)
+		{
+			await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
+
+		}
+	}
+
+	protected override void OnUpgrade()
+	{
+		base.DynamicVars.Block.UpgradeValueBy(2m);
+	}
+}

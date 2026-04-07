@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://crqlaxmubkelw"]
+
+[ext_resource type="Texture2D" uid="uid://da3b7t1wojrdg" path="res://images/packed/card_portraits/nana_dummy/nana_spread_sin.png" id="1_1ec1q"]
+
+[resource]
+atlas = ExtResource("1_1ec1q")

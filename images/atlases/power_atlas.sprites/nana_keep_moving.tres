@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dhbtotemjjm0s"]
+
+[ext_resource type="Texture2D" uid="uid://cgrhf78v3tmbw" path="res://images/powers/nana_keep_moving.png" id="1_kt0wu"]
+
+[resource]
+atlas = ExtResource("1_kt0wu")

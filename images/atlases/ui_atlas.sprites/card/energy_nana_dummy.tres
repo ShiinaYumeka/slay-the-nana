@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://diltnxqlt7c1w"]
+
+[ext_resource type="Texture2D" uid="uid://b0tio0lflniy6" path="res://images/characters/NanaDummy/energy.png" id="1_qgk3c"]
+
+[resource]
+atlas = ExtResource("1_qgk3c")
+region = Rect2(0, 0, 74, 74)

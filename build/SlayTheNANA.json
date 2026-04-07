@@ -1,0 +1,11 @@
+{
+  "id": "SlayTheNANA",
+  "name": "杀戮NANA塔",
+  "author": "ED_tear",
+  "description": "NANA与杀戮尖塔2联动",
+  "version": "v1.0.0",
+  "has_pck": true,
+  "has_dll": true,
+  "dependencies": ["BaseLib"],
+  "affects_gameplay": true
+}

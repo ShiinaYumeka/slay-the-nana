@@ -1,0 +1,16 @@
+[remap]
+
+importer="spine.atlas"
+type="SpineAtlasResource"
+uid="uid://rv6ols13ynts"
+path="res://.godot/imported/defect.atlas-07338ce6b404fb1617b03310df5942d2.spatlas"
+
+[deps]
+
+source_file="res://images/characters/NanaDummy/spine/defect.atlas"
+dest_files=["res://.godot/imported/defect.atlas-07338ce6b404fb1617b03310df5942d2.spatlas"]
+
+[params]
+
+normal_map_prefix="n"
+specular_map_prefix="s"

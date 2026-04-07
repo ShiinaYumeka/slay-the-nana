@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://biehyq6x4ppud"]
+
+[ext_resource type="Texture2D" uid="uid://r70ppwjs3ugl" path="res://images/characters/NanaDummy/body.png" id="1_b0ktc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4op7v"]
+
+[sub_resource type="Gradient" id="Gradient_l56lu"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.08571429, 0.13469388, 0.27755103, 0.5153846, 0.8489796, 1)
+colors = PackedColorArray(0.6242459, 2.201982e-06, 4.3317675e-07, 1, 0.6, 0.3844, 0.011999989, 1, 0.49593604, 0.4959361, 0, 1, 0.049807727, 0.35422614, 2.4065375e-07, 1, 0, 0.119194426, 0.13549566, 1, 0, 0.29013586, 0.58434695, 1, 0.2106319, 1.0973811e-05, 0.86632496, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g7x0c"]
+gradient = SubResource("Gradient_l56lu")
+fill_from = Vector2(0, 0.74700856)
+fill_to = Vector2(0.9948718, 0.23418804)
+
+[node name="RandomBg" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -521.0
+offset_right = 1600.0
+offset_bottom = 679.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1280, 600)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_4op7v")
+layout_mode = 0
+offset_left = -437.0
+offset_top = -107.0
+offset_right = 2197.0
+offset_bottom = 1129.0
+texture = SubResource("GradientTexture2D_g7x0c")
+expand_mode = 2
+
+[node name="Visuals" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1563.0001, 1036)
+scale = Vector2(-3.96, 3.96)
+texture = ExtResource("1_b0ktc")

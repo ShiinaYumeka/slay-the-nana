@@ -1,0 +1,8 @@
+[gd_resource type="SpineSkeletonDataResource" load_steps=3 format=3 uid="uid://cfeicxa4wdc8a"]
+
+[ext_resource type="SpineAtlasResource" uid="uid://rv6ols13ynts" path="res://images/characters/NanaDummy/spine/defect.atlas" id="1_krqdg"]
+[ext_resource type="SpineSkeletonFileResource" uid="uid://c5ntx42ih78vg" path="res://images/characters/NanaDummy/spine/defect.skel" id="2_oyrw1"]
+
+[resource]
+atlas_res = ExtResource("1_krqdg")
+skeleton_file_res = ExtResource("2_oyrw1")

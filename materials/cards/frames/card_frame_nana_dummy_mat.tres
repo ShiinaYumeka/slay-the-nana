@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://f0521fgm5u41"]
+
+[ext_resource type="Shader" uid="uid://mx3rdu5rto6p" path="res://materials/cards/frames/card_frame_nana_dummy_mat.gdshader" id="1_6al0t"]
+
+[resource]
+shader = ExtResource("1_6al0t")
+shader_parameter/h = 0.150000007125
+shader_parameter/s = 0.400000019
+shader_parameter/v = 2.0

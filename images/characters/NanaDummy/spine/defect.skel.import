@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://c5ntx42ih78vg"
+path="res://.godot/imported/defect.skel-b7753ceb62029bfc81e2596fe1b88356.spskel"
+
+[deps]
+
+source_file="res://images/characters/NanaDummy/spine/defect.skel"
+dest_files=["res://.godot/imported/defect.skel-b7753ceb62029bfc81e2596fe1b88356.spskel"]
+
+[params]
+

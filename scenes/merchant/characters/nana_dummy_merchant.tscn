@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba7yo4xha844e"]
+
+[ext_resource type="Script" uid="uid://da8hvm1qrjh2c" path="res://src/_/NanaNMerchantCharacter.cs" id="1_isp0c"]
+[ext_resource type="Texture2D" uid="uid://r70ppwjs3ugl" path="res://images/characters/NanaDummy/body.png" id="2_ddrui"]
+[ext_resource type="SpineSkeletonDataResource" uid="uid://cfeicxa4wdc8a" path="res://images/characters/NanaDummy/spine/new_spine_skeleton_data_resource.tres" id="2_isp0c"]
+
+[node name="DefectMerchant" type="Node2D"]
+script = ExtResource("1_isp0c")
+
+[node name="SpineSprite" type="SpineSprite" parent="."]
+skeleton_data_res = ExtResource("2_isp0c")
+preview_skin = "Default"
+preview_animation = "-- Empty --"
+preview_frame = false
+preview_time = 0.0
+position = Vector2(-1, -92)
+scale = Vector2(0.095, 0.095)
+
+[node name="Sprite2D" type="Sprite2D" parent="SpineSprite"]
+show_behind_parent = true
+position = Vector2(21.052631, -1431.579)
+scale = Vector2(10.499556, 10.499556)
+texture = ExtResource("2_ddrui")

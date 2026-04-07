@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using MegaCrit.Sts2.Core.Commands;
+using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Models;
+
+namespace SlayTheNANA;
+
+public sealed class NanaMurder : CardModel
+{
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(40m, ValueProp.Move), new DynamicVar("NanaKarma", 10m)];
+
+    public NanaMurder()
+        : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+    {
+    }
+
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    {
+        ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
+        await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
+            .Targeting(cardPlay.Target)
+            .WithHitFx("vfx/vfx_flying_slash", null, null)
+            .Execute(choiceContext);
+        await PowerCmd.Apply<NanaKarma>(base.Owner.Creature, base.DynamicVars["NanaKarma"].BaseValue, base.Owner.Creature, this);
+
+    }
+
+    protected override void OnUpgrade()
+    {
+        base.DynamicVars.Damage.UpgradeValueBy(10m);
+        base.DynamicVars["NanaKarma"].UpgradeValueBy(3m);
+    }
+}

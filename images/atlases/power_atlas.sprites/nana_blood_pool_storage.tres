@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dqj2r87xpp0pe"]
+
+[ext_resource type="Texture2D" uid="uid://cpf05xqdbgje" path="res://images/powers/nana_blood_pool_storage.png" id="1_jdnah"]
+
+[resource]
+atlas = ExtResource("1_jdnah")
