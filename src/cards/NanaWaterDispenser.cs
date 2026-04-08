@@ -17,9 +17,9 @@ namespace SlayTheNANA;
 public sealed class NanaWaterDispenser : CardModel
 {
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaWaterDispenser", 3m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaWaterDispenser", 2m)];
     public NanaWaterDispenser()
-        : base(2, CardType.Power, CardRarity.Common, TargetType.Self)
+        : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
     }
 

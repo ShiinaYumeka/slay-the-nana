@@ -18,7 +18,7 @@ public sealed class NanaRecoverDark : CardModel
 {
 
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(10m), new PowerVar<PoisonPower>(5m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(10m), new PowerVar<PoisonPower>(4m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<PoisonPower>())]; 
     public NanaRecoverDark()
         : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
@@ -33,7 +33,7 @@ public sealed class NanaRecoverDark : CardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Heal.UpgradeValueBy(5m);
+        base.DynamicVars.Poison.UpgradeValueBy(-1m);
 
     }
 }

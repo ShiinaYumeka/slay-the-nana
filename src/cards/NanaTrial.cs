@@ -19,7 +19,7 @@ public sealed class NanaTrial : CardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
 
     public NanaTrial()
-        : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+        : base(1, CardType.Skill, CardRarity.Basic, TargetType.AnyEnemy)
     {
     }
 

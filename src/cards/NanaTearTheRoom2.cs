@@ -15,7 +15,7 @@ namespace SlayTheNANA;
 
 public sealed class NanaTearTheRoom2: CardModel
 {
-    public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Ethereal)];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Ethereal), (CardKeyword.Exhaust)];
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [        
         new CalculationBaseVar(4m),

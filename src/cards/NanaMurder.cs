@@ -1,19 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
-using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.ValueProps;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SlayTheNANA;
 
 public sealed class NanaMurder : CardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(40m, ValueProp.Move), new DynamicVar("NanaKarma", 10m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(40m, ValueProp.Move), new DynamicVar("NanaKarma", 15m)];
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
     public NanaMurder()
         : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
@@ -33,6 +35,5 @@ public sealed class NanaMurder : CardModel
     protected override void OnUpgrade()
     {
         base.DynamicVars.Damage.UpgradeValueBy(10m);
-        base.DynamicVars["NanaKarma"].UpgradeValueBy(3m);
     }
 }

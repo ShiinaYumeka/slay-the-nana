@@ -17,7 +17,7 @@ public sealed class NanaLooxAtk : CardModel
 {
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<StrengthPower>(2m)];
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<StranglePower>())];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<StrengthPower>())];
 
     public NanaLooxAtk()
         : base(1, CardType.Power, CardRarity.Common, TargetType.Self)

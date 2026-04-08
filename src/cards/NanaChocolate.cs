@@ -14,22 +14,22 @@ namespace SlayTheNANA;
 
 public sealed class NanaChocolate : CardModel
 {
-	protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<DexterityPower>(1m),new DynamicVar("NanaPlantMagic", 1m)];
-	protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>()),(HoverTipFactory.FromPower<NanaPlantMagic>())];
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1), new DynamicVar("NanaPlantMagic", 1m)];
+	protected override IEnumerable<IHoverTip> ExtraHoverTips => [base.EnergyHoverTip, (HoverTipFactory.FromPower<NanaPlantMagic>())];
 
 	public NanaChocolate()
-		: base(0, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
+		: base(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
 	{
 	}
 
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-		await PowerCmd.Apply<DexterityPower>(base.Owner.Creature, base.DynamicVars.Dexterity.BaseValue, base.Owner.Creature, this);
+		await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);
 		await PowerCmd.Apply<NanaPlantMagic>(base.CombatState.HittableEnemies, base.DynamicVars["NanaPlantMagic"].BaseValue, base.Owner.Creature, this);
 	}
 
 	protected override void OnUpgrade()
 	{
-		base.DynamicVars["NanaPlantMagic"].UpgradeValueBy(1m);
+		base.DynamicVars.Energy.UpgradeValueBy(1);
 	}
 }

@@ -16,14 +16,14 @@ namespace SlayTheNANA;
 public sealed class NanaExecute : CardModel
 {
 	protected override IEnumerable<DynamicVar> CanonicalVars => [
-		new CalculationBaseVar(10m),
+		new CalculationBaseVar(8m),
 		new ExtraDamageVar(3m),
 		new CalculatedDamageVar(ValueProp.Move).WithMultiplier((CardModel _, Creature? target) => target?.GetPowerAmount<NanaKarma>() ?? 0)];
 
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
 
 	public NanaExecute()
-		: base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+		: base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 	{
 	}
 

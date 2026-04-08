@@ -16,6 +16,7 @@ namespace SlayTheNANA;
 
 public sealed class NanaBloodPool : CardModel
 {
+	protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaBloodPoolStorage>())];
 
 	public NanaBloodPool()
 		: base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)

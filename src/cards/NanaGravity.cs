@@ -25,10 +25,10 @@ public sealed class NanaGravity : CardModel
         new CalculationExtraVar(1m),
         new CalculatedVar("DexterityLoss").WithMultiplier((CardModel card, Creature? target) => (target?.GetPowerAmount<NanaKarma>()/2) ?? 0)
         ];
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>())];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>()), (HoverTipFactory.FromPower<NanaKarma>())];
 
     public NanaGravity()
-        : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+        : base(2, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
     }
 

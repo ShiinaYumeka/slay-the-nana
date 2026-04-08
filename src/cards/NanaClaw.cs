@@ -18,7 +18,7 @@ public sealed class NanaClaw : CardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(5m),
-        new ExtraDamageVar(2m),
+        new ExtraDamageVar(3m),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier((CardModel card, Creature? target) =>  card.Owner.Creature?.GetPowerAmount<DexterityPower>()+target?.GetPowerAmount<DexterityPower>()*-1 ?? 0)
         ];
 
@@ -42,7 +42,7 @@ public sealed class NanaClaw : CardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.ExtraDamage.UpgradeValueBy(2m);
+        base.DynamicVars.ExtraDamage.UpgradeValueBy(1m);
     }
 
 }

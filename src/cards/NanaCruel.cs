@@ -16,12 +16,12 @@ namespace SlayTheNANA;
 
 public sealed class NanaCruel : CardModel
 {
-
     public NanaCruel()
         : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
     }
 
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PowerCmd.Apply<NanaCruelPower>(base.Owner.Creature, 1, base.Owner.Creature, this);

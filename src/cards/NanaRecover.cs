@@ -20,7 +20,7 @@ public sealed class NanaRecover : CardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(4m)];
     public NanaRecover()
-        : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+        : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
     {
     }
 
@@ -31,7 +31,6 @@ public sealed class NanaRecover : CardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Heal.UpgradeValueBy(2m);
-
+        base.EnergyCost.UpgradeBy(-1);
     }
 }

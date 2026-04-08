@@ -19,7 +19,7 @@ public sealed class NanaInsanity: CardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaInsanityPower", 5m)];
     public NanaInsanity()
-        : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+        : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
     }
 

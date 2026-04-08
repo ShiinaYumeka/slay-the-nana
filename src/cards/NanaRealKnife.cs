@@ -1,5 +1,7 @@
+using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
@@ -15,10 +17,11 @@ namespace SlayTheNANA;
 
 public sealed class NanaRealKnife : CardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(299m, ValueProp.Move)];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Retain)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(99m, ValueProp.Move)];
 
     public NanaRealKnife()
-        : base(9, CardType.Skill, CardRarity.Rare, TargetType.AnyEnemy)
+        : base(9, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
     {
     }
 
@@ -30,8 +33,18 @@ public sealed class NanaRealKnife : CardModel
             .Execute(choiceContext);
     }
 
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    {
+        
+        CardPile? pile = base.Pile;
+        if (pile != null && pile.Type == PileType.Hand && player == base.Owner)
+        {
+            base.EnergyCost.AddUntilPlayed(-1);
+        }
+    }
+
     protected override void OnUpgrade()
     {
-        AddKeyword(CardKeyword.Retain);
+        base.EnergyCost.UpgradeBy(-1);
     }
 }

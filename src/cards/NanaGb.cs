@@ -16,14 +16,14 @@ namespace SlayTheNANA;
 public sealed class NanaGb: CardModel
 {
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move), new DynamicVar("NanaFcCost", 40m), new RepeatVar(5)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(3m, ValueProp.Move), new DynamicVar("NanaFcCost", 20m), new RepeatVar(5)];
 
     protected override bool IsPlayable => base.Owner.Creature.GetPowerAmount<NanaFc>() >= base.DynamicVars["NanaFcCost"].BaseValue;
     protected override bool ShouldGlowGoldInternal => IsPlayable;
 
     public bool IsNanaFcMove = true;
     public NanaGb()
-		: base(2, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
+		: base(0, CardType.Attack, CardRarity.Basic, TargetType.AllEnemies)
 	{
 	}
 

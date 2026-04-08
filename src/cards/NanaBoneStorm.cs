@@ -14,10 +14,10 @@ public sealed class NanaBoneStorm : CardModel
 {
 	protected override bool HasEnergyCostX => true;
 
-	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(4m, ValueProp.Move)];
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move)];
 
 	public NanaBoneStorm()
-		: base(0, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
+		: base(0, CardType.Attack, CardRarity.Rare, TargetType.AnyEnemy)
 	{
 	}
 

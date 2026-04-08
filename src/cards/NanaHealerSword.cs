@@ -12,7 +12,7 @@ namespace SlayTheNANA;
 
 public sealed class NanaHealerSword : CardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move), new HealVar(3m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6m, ValueProp.Move), new HealVar(3m)];
 
     public NanaHealerSword()
         : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)

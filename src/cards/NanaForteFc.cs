@@ -16,7 +16,7 @@ namespace SlayTheNANA;
 public sealed class NanaForteFc : CardModel
 {
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(30m, ValueProp.Move), new DynamicVar("NanaFcCost", 60m), new EnergyVar(3)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(30m, ValueProp.Move), new DynamicVar("NanaFcCost", 50m), new EnergyVar(2)];
 
     protected override bool IsPlayable => base.Owner.Creature.GetPowerAmount<NanaFc>() >= base.DynamicVars["NanaFcCost"].BaseValue;
     protected override bool ShouldGlowGoldInternal => IsPlayable;

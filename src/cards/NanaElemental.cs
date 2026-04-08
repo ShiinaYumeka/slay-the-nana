@@ -25,7 +25,7 @@ public sealed class NanaElemental : CardModel
 
     public bool IsNanaFcMove = true;
     public NanaElemental()
-		: base(1, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
+		: base(0, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
 	{
 	}
 
@@ -47,5 +47,6 @@ public sealed class NanaElemental : CardModel
     protected override void OnUpgrade()
 	{
         base.DynamicVars["NanaElemental"].UpgradeValueBy(1m);
-	}
+        base.DynamicVars.Damage.UpgradeValueBy(5m);
+    }
 }

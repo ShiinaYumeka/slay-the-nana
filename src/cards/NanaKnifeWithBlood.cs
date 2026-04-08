@@ -16,7 +16,7 @@ namespace SlayTheNANA;
 public sealed class NanaKnifeWithBlood : CardModel
 {
 	protected override IEnumerable<DynamicVar> CanonicalVars => [
-		new CalculationBaseVar(5m),
+		new CalculationBaseVar(8m),
 		new ExtraDamageVar(2m),
 		new CalculatedDamageVar(ValueProp.Move).WithMultiplier((CardModel card, Creature? target) => card.Owner.Creature?.GetPowerAmount<NanaKarma>() ?? 0)];
 

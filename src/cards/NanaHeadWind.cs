@@ -18,7 +18,7 @@ public sealed class NanaHeadWind : CardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>())];
 
     public NanaHeadWind()
-        : base(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
+        : base(0, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
     {
     }
 

@@ -18,7 +18,7 @@ public sealed class NanaGasterAssist : CardModel
 {
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Exhaust)];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(20m, ValueProp.Move), new EnergyVar(10), new PowerVar<FrailPower>(3m), new PowerVar<WeakPower>(3m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(30m, ValueProp.Move), new EnergyVar(10), new PowerVar<FrailPower>(3m), new PowerVar<WeakPower>(3m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaGasterAssistPower>()),base.EnergyHoverTip];
     public NanaGasterAssist()
         : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self)

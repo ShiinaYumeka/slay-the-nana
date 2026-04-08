@@ -19,7 +19,7 @@ public sealed class NanaTurret : CardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaTurret", 7m)];
     public NanaTurret()
-        : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+        : base(2, CardType.Power, CardRarity.Common, TargetType.Self)
     {
     }
 
@@ -30,7 +30,7 @@ public sealed class NanaTurret : CardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["NanaTurret"].UpgradeValueBy(2m);
+        base.DynamicVars["NanaTurret"].UpgradeValueBy(3m);
 
     }
 }

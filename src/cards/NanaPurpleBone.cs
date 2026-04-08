@@ -14,7 +14,7 @@ namespace SlayTheNANA;
 
 public sealed class NanaPurpleBone : CardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move), new DynamicVar("NanaKarma", 3m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6m, ValueProp.Move), new DynamicVar("NanaKarma", 4m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
 
     public NanaPurpleBone()
@@ -36,6 +36,6 @@ public sealed class NanaPurpleBone : CardModel
     protected override void OnUpgrade()
     {
         base.DynamicVars.Damage.UpgradeValueBy(2m);
-        base.DynamicVars["NanaKarma"].UpgradeValueBy(1m);
+        base.DynamicVars["NanaKarma"].UpgradeValueBy(2m);
     }
 }

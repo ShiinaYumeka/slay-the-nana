@@ -15,7 +15,7 @@ namespace SlayTheNANA;
 
 public sealed class NanaTaj : CardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<WeakPower>(3m), new DynamicVar("NanaFcGain", 25m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<WeakPower>(3m), new DynamicVar("NanaFcGain", 30m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<WeakPower>())];
 
     public NanaTaj()
@@ -32,6 +32,6 @@ public sealed class NanaTaj : CardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["NanaFcGain"].UpgradeValueBy(8m);
+        base.DynamicVars["NanaFcGain"].UpgradeValueBy(10m);
     }
 }

@@ -14,8 +14,8 @@ namespace SlayTheNANA;
 
 public sealed class NanaPf666 : CardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<WeakPower>(2m), new DynamicVar("Frail", 2m), new DynamicVar("NanaKarma", 3m)];
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<WeakPower>()), (HoverTipFactory.FromPower<FrailPower>()), (HoverTipFactory.FromPower<NanaKarma>())];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<WeakPower>(3m), new PowerVar<VulnerablePower>(3m), new DynamicVar("NanaKarma", 3m)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<WeakPower>()), (HoverTipFactory.FromPower<VulnerablePower>()), (HoverTipFactory.FromPower<NanaKarma>())];
 
     public NanaPf666()
         : base(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
@@ -26,12 +26,11 @@ public sealed class NanaPf666 : CardModel
     {
         await PowerCmd.Apply<NanaKarma>(base.Owner.Creature, base.DynamicVars["NanaKarma"].BaseValue, base.Owner.Creature, this);
         await PowerCmd.Apply<WeakPower>(base.CombatState.HittableEnemies, base.DynamicVars.Weak.BaseValue, base.Owner.Creature, this);
-        await PowerCmd.Apply<FrailPower>(base.CombatState.HittableEnemies, base.DynamicVars["Frail"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<VulnerablePower>(base.CombatState.HittableEnemies, base.DynamicVars.Vulnerable.BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Weak.UpgradeValueBy(1m);
-        base.DynamicVars["Frail"].UpgradeValueBy(1m);
+        base.DynamicVars.Vulnerable.UpgradeValueBy(4m);
     }
 }

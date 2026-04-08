@@ -15,8 +15,8 @@ namespace SlayTheNANA;
 public sealed class NanaRedTrident : CardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Exhaust)];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(15m, ValueProp.Move), new PowerVar<WeakPower>(2m), new DynamicVar("Frail", 2m)];
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<WeakPower>()), (HoverTipFactory.FromPower<FrailPower>())];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(15m, ValueProp.Move), new PowerVar<WeakPower>(2m), new DynamicVar("Vulnerable", 2m)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<WeakPower>()), (HoverTipFactory.FromPower<VulnerablePower>())];
 
     public NanaRedTrident()
         : base(0, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
@@ -30,7 +30,7 @@ public sealed class NanaRedTrident : CardModel
             .WithHitFx("vfx/vfx_flying_slash", null, null)
             .Execute(choiceContext); 
         await PowerCmd.Apply<WeakPower>(cardPlay.Target, base.DynamicVars.Weak.BaseValue, base.Owner.Creature, this);
-        await PowerCmd.Apply<FrailPower>(cardPlay.Target, base.DynamicVars["Frail"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<VulnerablePower>(cardPlay.Target, base.DynamicVars["Vulnerable"].BaseValue, base.Owner.Creature, this);
 
 
     }
@@ -39,6 +39,6 @@ public sealed class NanaRedTrident : CardModel
     {
         base.DynamicVars.Damage.UpgradeValueBy(3m);
         base.DynamicVars.Weak.UpgradeValueBy(1m);
-        base.DynamicVars["Frail"].UpgradeValueBy(1m);
+        base.DynamicVars["Vulnerable"].UpgradeValueBy(1m);
     }
 }
