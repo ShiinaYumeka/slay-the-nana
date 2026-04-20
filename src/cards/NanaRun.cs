@@ -17,7 +17,7 @@ public sealed class NanaRun : CardModel
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<DexterityPower>(1m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>())];
     public NanaRun()
-        : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+        : base(0, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
     }
 

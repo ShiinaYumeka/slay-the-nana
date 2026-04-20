@@ -15,23 +15,23 @@ namespace SlayTheNANA;
 
 public sealed class NanaTaj : CardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<WeakPower>(3m), new DynamicVar("NanaFcGain", 30m)];
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<WeakPower>())];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaKarma", 10m), new DynamicVar("NanaFcGain", 99m)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
 
     public NanaTaj()
-        : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+        : base(2, CardType.Skill, CardRarity.Rare, TargetType.Self)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<WeakPower>(base.Owner.Creature, base.DynamicVars.Weak.BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<NanaKarma>(base.Owner.Creature, base.DynamicVars["NanaKarma"].BaseValue, base.Owner.Creature, this);
         (await PowerCmd.Apply<NanaFc>(base.Owner.Creature, base.DynamicVars["NanaFcGain"].BaseValue, base.Owner.Creature, this))?.NanaFcGain();
 
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["NanaFcGain"].UpgradeValueBy(10m);
+        base.EnergyCost.UpgradeBy(-1);
     }
 }

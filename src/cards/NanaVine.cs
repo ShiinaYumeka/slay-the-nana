@@ -29,7 +29,7 @@ protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Nan
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
 
-    await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.AttackAnimDelay);
+        await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.AttackAnimDelay);
         await PowerCmd.Apply<NanaPlantMagic>(cardPlay.Target, base.DynamicVars["NanaPlantMagic"].BaseValue, base.Owner.Creature, this);
     }
 

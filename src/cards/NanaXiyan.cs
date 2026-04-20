@@ -17,7 +17,7 @@ public sealed class NanaXiyan : CardModel
     protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(10m, ValueProp.Move),new PowerVar<DexterityPower>(1m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>())];
     public NanaXiyan()
-        : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
+        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
     }
 

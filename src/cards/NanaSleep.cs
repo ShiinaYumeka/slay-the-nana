@@ -21,7 +21,7 @@ public sealed class NanaSleep: CardModel
     protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(10m), new DynamicVar("DexterityLoss", 2m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>())]; 
     public NanaSleep()
-        : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
     }
 
@@ -33,7 +33,6 @@ public sealed class NanaSleep: CardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Heal.UpgradeValueBy(5m);
-
+        base.DynamicVars["DexterityLoss"].UpgradeValueBy(-1m);
     }
 }

@@ -18,7 +18,7 @@ public sealed class NanaChocolate : CardModel
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => [base.EnergyHoverTip, (HoverTipFactory.FromPower<NanaPlantMagic>())];
 
 	public NanaChocolate()
-		: base(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
+		: base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
 	{
 	}
 

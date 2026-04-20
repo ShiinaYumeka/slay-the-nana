@@ -18,22 +18,21 @@ public sealed class NanaFireShield: CardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [base.EnergyHoverTip, (HoverTipFactory.FromPower<DexterityPower>())];
 
     public NanaFireShield()
-        : base(1, CardType.Skill, CardRarity.Common, TargetType.Self)
+        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);
-        await PowerCmd.Apply<DexterityPower>(base.Owner.Creature, base.DynamicVars.Dexterity.BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<DexterityPower>(base.Owner.Creature, -base.DynamicVars.Dexterity.BaseValue, base.Owner.Creature, this);
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
 
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Block.UpgradeValueBy(6m);
+        base.DynamicVars.Block.UpgradeValueBy(4m);
         base.DynamicVars.Energy.UpgradeValueBy(1m);
-        base.DynamicVars["DexterityPower"].UpgradeValueBy(1m);
     }
 }

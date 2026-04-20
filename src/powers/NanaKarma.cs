@@ -36,6 +36,11 @@ public sealed class NanaKarma : PowerModel
                 await PowerCmd.ModifyAmount(this, -amountToRemove, null, null);
                 //await PowerCmd.Decrement(this);
             }
+            else
+            {
+                decimal amountToRemove = (base.Amount + 3) / 4;
+                await PowerCmd.ModifyAmount(this, -amountToRemove, null, null);
+            }
         }
         else
         {

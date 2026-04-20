@@ -15,7 +15,7 @@ namespace SlayTheNANA;
 
 public sealed class NanaButter: CardModel
 {
-	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move), new DynamicVar("DexterityLoss", 3m)];
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<WeakPower>(1m), new DynamicVar("DexterityLoss", 4m)];
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>())];
 
 	public NanaButter()
@@ -29,11 +29,12 @@ public sealed class NanaButter: CardModel
 	{
 
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.AttackAnimDelay);
+		await PowerCmd.Apply<WeakPower>(cardPlay.Target, base.DynamicVars.Weak.BaseValue, base.Owner.Creature, this);
 		await PowerCmd.Apply<DexterityPower>(cardPlay.Target, -base.DynamicVars["DexterityLoss"].BaseValue, base.Owner.Creature, this);
 	}
 
 	protected override void OnUpgrade()
 	{
-		base.DynamicVars["DexterityLoss"].UpgradeValueBy(2m);
+		base.DynamicVars["DexterityLoss"].UpgradeValueBy(3m);
 	}
 }

@@ -5,6 +5,7 @@ using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
+using MegaCrit.Sts2.Core.Logging;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
@@ -35,16 +36,15 @@ public sealed class NanaRealKnife : CardModel
 
     public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
     {
-        
         CardPile? pile = base.Pile;
         if (pile != null && pile.Type == PileType.Hand && player == base.Owner)
         {
-            base.EnergyCost.AddUntilPlayed(-1);
+            base.EnergyCost.AddUntilPlayed(-2);
         }
     }
 
     protected override void OnUpgrade()
     {
-        base.EnergyCost.UpgradeBy(-1);
+        base.AddKeyword(CardKeyword.Innate);
     }
 }

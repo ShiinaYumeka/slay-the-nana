@@ -4,6 +4,7 @@ using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Factories;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.HoverTips;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
@@ -26,13 +27,14 @@ public sealed class NanaTricolorBone : CardModel
 	{
 	}
 
-	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromKeyword(CardKeyword.Ethereal))];
+    protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
         CardModel card = CardFactory.GetDistinctForCombat(base.Owner, [(ModelDb.Card<NanaBlueBone>()), (ModelDb.Card<NanaOrangeBone>()), (ModelDb.Card<NanaPurpleBone>()), (ModelDb.Card<NanaRedBone>()), (ModelDb.Card<NanaBoneStorm>()), (ModelDb.Card<NanaBoneCombo>()), (ModelDb.Card<NanaBoneReturn>()), (ModelDb.Card<NanaBoneSpike>())], 1, base.Owner.RunState.Rng.CombatCardGeneration).FirstOrDefault();
 
         //if (base.IsUpgraded)
         //{
-        //    CardCmd.Upgrade(card);
+        CardCmd.Upgrade(card);
         //}
         card.SetToFreeThisTurn();
         card.AddKeyword(CardKeyword.Ethereal);

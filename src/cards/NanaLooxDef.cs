@@ -20,7 +20,7 @@ public sealed class NanaLooxDef : CardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>())];
 
     public NanaLooxDef()
-        : base(1, CardType.Power, CardRarity.Common, TargetType.Self)
+        : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
     }
 

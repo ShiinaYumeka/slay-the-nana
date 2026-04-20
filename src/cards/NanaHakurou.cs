@@ -12,7 +12,7 @@ namespace SlayTheNANA;
 
 public sealed class NanaHakurou : CardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8m, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(9m, ValueProp.Move)];
 
 	public NanaHakurou()
 		: base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
@@ -35,6 +35,6 @@ public sealed class NanaHakurou : CardModel
 
 	protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(2m);
+        base.DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }

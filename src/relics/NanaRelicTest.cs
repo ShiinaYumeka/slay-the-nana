@@ -1,3 +1,5 @@
+using BaseLib.Abstracts;
+using BaseLib.Utils;
 using MegaCrit.Sts2.Core.Combat;
 using MegaCrit.Sts2.Core.Commands;
 using MegaCrit.Sts2.Core.Entities.Cards;
@@ -10,6 +12,7 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
+using MegaCrit.Sts2.Core.Models.RelicPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using System;
 using System.Collections;
@@ -18,19 +21,23 @@ using System.Threading.Tasks;
 
 namespace SlayTheNANA;
 
-public sealed class NanaRelicTest : RelicModel
+[Pool(typeof(SharedRelicPool))]
+public sealed class NanaRelicTest : CustomRelicModel
 {
-    public override RelicRarity Rarity => RelicRarity.Starter;
+	public override RelicRarity Rarity => RelicRarity.Starter;
 
-    public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext, Creature? dealer, DamageResult result, ValueProp props, Creature target, CardModel? cardSource)
-    {
+	public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext, Creature? dealer, DamageResult result, ValueProp props, Creature target, CardModel? cardSource)
+	{
 
-        var field = cardSource?.GetType().GetField("IsNanaFcMove");
-        bool isNanaFcMove = field != null && (bool)field.GetValue(cardSource);
+		var field = cardSource?.GetType().GetField("IsNanaFcMove");
+		bool isNanaFcMove = field != null && (bool)field.GetValue(cardSource);
 
-        if ((dealer == base.Owner.Creature || dealer?.PetOwner == base.Owner) && !target.IsPlayer && isNanaFcMove != true)
-        {
-            (await PowerCmd.Apply<NanaFc>(dealer, result.UnblockedDamage, base.Owner.Creature, null))?.NanaFcGain();
-        }
+		if ((dealer == base.Owner.Creature || dealer?.PetOwner == base.Owner) && !target.IsPlayer && isNanaFcMove != true)
+		{
+			(await PowerCmd.Apply<NanaFc>(dealer, result.UnblockedDamage, base.Owner.Creature, null))?.NanaFcGain();
+		}
     }
+
+    public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<NanaRelicTestPlus>().ToMutable(); // 实现方法。自己更改类型。
+
 }

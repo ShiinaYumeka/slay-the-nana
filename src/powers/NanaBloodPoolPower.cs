@@ -31,7 +31,7 @@ public sealed class NanaBloodPoolPower : PowerModel
     {
         if (dealer == base.Owner && props.IsPoweredAttack_() && result.UnblockedDamage > 0)
         {
-            await PowerCmd.Apply<NanaBloodPoolStorage>(base.Owner, result.UnblockedDamage, base.Owner, null);
+            await PowerCmd.Apply<NanaBloodPoolStorage>(base.Owner, (result.UnblockedDamage+3)/4, base.Owner, null);
         }
     }
 }

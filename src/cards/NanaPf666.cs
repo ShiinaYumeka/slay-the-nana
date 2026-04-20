@@ -14,11 +14,11 @@ namespace SlayTheNANA;
 
 public sealed class NanaPf666 : CardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<WeakPower>(3m), new PowerVar<VulnerablePower>(3m), new DynamicVar("NanaKarma", 3m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<WeakPower>(2m), new PowerVar<VulnerablePower>(2m), new DynamicVar("NanaKarma", 3m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<WeakPower>()), (HoverTipFactory.FromPower<VulnerablePower>()), (HoverTipFactory.FromPower<NanaKarma>())];
 
     public NanaPf666()
-        : base(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
+        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
     {
     }
 
@@ -31,6 +31,7 @@ public sealed class NanaPf666 : CardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Vulnerable.UpgradeValueBy(4m);
+        base.DynamicVars.Vulnerable.UpgradeValueBy(1m);
+        base.DynamicVars.Weak.UpgradeValueBy(1m);
     }
 }

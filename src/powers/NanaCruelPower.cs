@@ -35,15 +35,19 @@ public sealed class NanaCruelPower : PowerModel
         {
             return amount;
         }
-        if (cardSource is NanaShiftTheBlame)
+        if (target == base.Owner)
         {
             return amount;
+        }
+        if (cardSource is NanaShiftTheBlame)
+        {
+            return amount * 2;
         }
         return amount * 2;
     }
     public override async Task AfterPowerAmountChanged(PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
     {
-        if (applier == base.Owner && !(amount <= 0m) && power is NanaKarma && !(cardSource is NanaShiftTheBlame))
+        if (applier == base.Owner && !(amount <= 0m) && power is NanaKarma && !(cardSource is NanaShiftTheBlame) && !(cardSource is NanaMurder) && !(cardSource is NanaPf666))
         {
             await PowerCmd.Apply<NanaKarma>(applier, amount/2, null, null);
         }

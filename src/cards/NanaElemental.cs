@@ -17,7 +17,7 @@ namespace SlayTheNANA;
 public sealed class NanaElemental : CardModel
 {
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(20m, ValueProp.Move), new DynamicVar("NanaFcCost", 50m), new DynamicVar("NanaElemental", 3m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(24m, ValueProp.Move), new DynamicVar("NanaFcCost", 44m), new DynamicVar("NanaElemental", 3m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<PoisonPower>()), (HoverTipFactory.FromPower<WeakPower>()), (HoverTipFactory.FromPower<FrailPower>()), (HoverTipFactory.FromPower<VulnerablePower>())];
 
     protected override bool IsPlayable => base.Owner.Creature.GetPowerAmount<NanaFc>() >= base.DynamicVars["NanaFcCost"].BaseValue;
@@ -47,6 +47,6 @@ public sealed class NanaElemental : CardModel
     protected override void OnUpgrade()
 	{
         base.DynamicVars["NanaElemental"].UpgradeValueBy(1m);
-        base.DynamicVars.Damage.UpgradeValueBy(5m);
+        base.DynamicVars.Damage.UpgradeValueBy(6m);
     }
 }

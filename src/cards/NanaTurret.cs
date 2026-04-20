@@ -17,9 +17,9 @@ namespace SlayTheNANA;
 public sealed class NanaTurret : CardModel
 {
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaTurret", 7m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaTurret", 20m)];
     public NanaTurret()
-        : base(2, CardType.Power, CardRarity.Common, TargetType.Self)
+        : base(3, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
     }
 
@@ -30,7 +30,7 @@ public sealed class NanaTurret : CardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["NanaTurret"].UpgradeValueBy(3m);
+        base.DynamicVars["NanaTurret"].UpgradeValueBy(5m);
 
     }
 }

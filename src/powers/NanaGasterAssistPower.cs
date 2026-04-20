@@ -28,8 +28,8 @@ public sealed class NanaGasterAssistPower : PowerModel
         if (side == base.Owner.Side)
         {
             Flash();
-            await PowerCmd.Apply<FrailPower>(base.Owner, 5, base.Owner, null);
-            await PowerCmd.Apply<WeakPower>(base.Owner, 5, base.Owner, null);
+            await PowerCmd.Apply<FrailPower>(base.Owner, 3, base.Owner, null);
+            await PowerCmd.Apply<WeakPower>(base.Owner, 3, base.Owner, null);
             await PowerCmd.Remove(this);
         }
     }

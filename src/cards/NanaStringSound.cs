@@ -14,11 +14,11 @@ namespace SlayTheNANA;
 
 public sealed class NanaStringSound : CardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6m, ValueProp.Move), new PowerVar<DexterityPower>(1m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6m, ValueProp.Move), new PowerVar<DexterityPower>(2m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>())];
 
     public NanaStringSound()
-        : base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+        : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
     }
 
@@ -30,11 +30,12 @@ public sealed class NanaStringSound : CardModel
             .WithHitFx("vfx/vfx_flying_slash", null, null)
             .Execute(choiceContext);
         await PowerCmd.Apply<DexterityPower>(base.Owner.Creature, base.DynamicVars.Dexterity.BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<NanaSlipPower>(base.Owner.Creature, base.DynamicVars.Dexterity.BaseValue, base.Owner.Creature, this);
 
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Dexterity.UpgradeValueBy(1m);
+        base.DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }

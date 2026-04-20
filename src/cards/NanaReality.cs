@@ -19,7 +19,7 @@ namespace SlayTheNANA;
 public sealed class NanaReality: CardModel
 {
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move), new DynamicVar("NanaFcCost", 30m), new RepeatVar(4)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move), new DynamicVar("NanaFcCost", 25m), new RepeatVar(4)];
 
     protected override bool IsPlayable => base.Owner.Creature.GetPowerAmount<NanaFc>() >= base.DynamicVars["NanaFcCost"].BaseValue;
     protected override bool ShouldGlowGoldInternal => IsPlayable;
@@ -52,6 +52,5 @@ public sealed class NanaReality: CardModel
     protected override void OnUpgrade()
 	{
         base.DynamicVars["NanaFcCost"].UpgradeValueBy(-5m);
-
     }
 }

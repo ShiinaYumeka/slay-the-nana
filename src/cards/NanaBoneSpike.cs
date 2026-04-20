@@ -14,7 +14,7 @@ namespace SlayTheNANA;
 
 public sealed class NanaBoneSpike : CardModel
 {
-	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(3m, ValueProp.Move),new RepeatVar(2), new HpLossVar(1m)];
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(4m, ValueProp.Move), new HpLossVar(1m)];
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromKeyword(CardKeyword.Ethereal)), (HoverTipFactory.FromKeyword(CardKeyword.Exhaust))];
 
 	public NanaBoneSpike()
@@ -25,8 +25,8 @@ public sealed class NanaBoneSpike : CardModel
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
 		ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-		await CreatureCmd.Damage(choiceContext, base.Owner.Creature, base.DynamicVars.HpLoss.BaseValue, ValueProp.Unblockable | ValueProp.Unpowered | ValueProp.Move, this);
-		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).WithHitCount(base.DynamicVars.Repeat.IntValue).FromCard(this)
+		await CreatureCmd.Damage(choiceContext, base.Owner.Creature, base.DynamicVars.HpLoss.BaseValue, ValueProp.Unpowered | ValueProp.Move, this);
+		await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
 			.Targeting(cardPlay.Target)
 			.WithHitFx("vfx/vfx_attack_blunt", null, null)
 			.Execute(choiceContext);
@@ -35,11 +35,11 @@ public sealed class NanaBoneSpike : CardModel
 		CardModel cardModel = CreateClone();
 		cardModel.AddKeyword(CardKeyword.Exhaust);
 		cardModel.AddKeyword(CardKeyword.Ethereal);
-		cardModel.DynamicVars.HpLoss.BaseValue++;
+		cardModel.DynamicVars.HpLoss.BaseValue*=2;
 		await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, addedByPlayer: true);
 	}
 	protected override void OnUpgrade()
 	{
-		base.DynamicVars.Repeat.UpgradeValueBy(1m);
+		base.DynamicVars.Damage.UpgradeValueBy(2m);
 	}
 }

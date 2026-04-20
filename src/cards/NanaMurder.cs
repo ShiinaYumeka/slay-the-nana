@@ -13,7 +13,7 @@ namespace SlayTheNANA;
 
 public sealed class NanaMurder : CardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(40m, ValueProp.Move), new DynamicVar("NanaKarma", 15m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(30m, ValueProp.Move), new DynamicVar("NanaKarma", 10m)];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
     public NanaMurder()

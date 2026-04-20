@@ -17,9 +17,9 @@ namespace SlayTheNANA;
 public sealed class NanaDoor : CardModel
 {
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaDoor", 1m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaDoor", 2m)];
     public NanaDoor()
-        : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+        : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
     }
 
@@ -30,7 +30,7 @@ public sealed class NanaDoor : CardModel
 
     protected override void OnUpgrade()
     {
-        base.EnergyCost.UpgradeBy(-1);
+        base.DynamicVars["NanaDoor"].UpgradeValueBy(1);
 
     }
 }

@@ -19,7 +19,7 @@ public sealed class NanaBloodPool : CardModel
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaBloodPoolStorage>())];
 
 	public NanaBloodPool()
-		: base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+		: base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
 	{
 	}
 
@@ -31,6 +31,5 @@ public sealed class NanaBloodPool : CardModel
 	protected override void OnUpgrade()
 	{
 		base.EnergyCost.UpgradeBy(-1);
-
 	}
 }

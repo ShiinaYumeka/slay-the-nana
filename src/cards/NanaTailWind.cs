@@ -14,18 +14,17 @@ namespace SlayTheNANA;
 
 public sealed class NanaTailWind : CardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<DexterityPower>(1m), new DynamicVar("DexterityLoss", 2m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("DexterityLoss", 2m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>())];
 
     public NanaTailWind()
-        : base(0, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
+        : base(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
     {
     }
 
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<DexterityPower>(base.Owner.Creature, -base.DynamicVars.Dexterity.BaseValue, base.Owner.Creature, this);
         await PowerCmd.Apply<DexterityPower>(base.CombatState.HittableEnemies, -base.DynamicVars["DexterityLoss"].BaseValue, base.Owner.Creature, this);
 
     }

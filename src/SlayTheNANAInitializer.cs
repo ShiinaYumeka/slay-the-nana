@@ -31,33 +31,33 @@ public static class SlayTheNANAInitializer
 	//public static MegaCrit.Sts2.Core.Logging.Logger Logger { get; } = new("SlayTheNANA", MegaCrit.Sts2.Core.Logging.LogType.Generic);
 	public static void Initialize()
 	{
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaBoneCombo));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaBoneStorm));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaLooxAtk));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaLooxDef));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaHealerSword));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaStick));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaExecute));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaTrial));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaVine));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaOrangeBone));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaBlueBone));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaThreeTrial));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaButter));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaClaw));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaGasterAssist));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaRedTrident));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaMurder));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaPurpleSmoke));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaPurpleBone));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaBoneReturn));
-        //ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaFinalTrial));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaBoneCombo));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaBoneStorm));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaLooxAtk));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaLooxDef));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaHealerSword));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaStick));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaExecute));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaTrial));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaVine));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaOrangeBone));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaBlueBone));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaThreeTrial));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaButter));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaClaw));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaGasterAssist));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaRedTrident));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaMurder));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaPurpleSmoke));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaPurpleBone));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaBoneReturn));
+		//ModHelper.AddModelToPool(typeof(IroncladCardPool), typeof(NanaFinalTrial));
 
-        //ModHelper.AddModelToPool(typeof(IroncladRelicPool), typeof(NanaRedTridentRelic));
-        //ModHelper.AddModelToPool(typeof(IroncladRelicPool), typeof(NanaJudgeRelic));
-        //      ModHelper.AddModelToPool(typeof(IroncladRelicPool), typeof(NanaRelicTest));
-        
-        var harmony = new Harmony("SlayTheNANA");
+		//ModHelper.AddModelToPool(typeof(IroncladRelicPool), typeof(NanaRedTridentRelic));
+		//ModHelper.AddModelToPool(typeof(IroncladRelicPool), typeof(NanaJudgeRelic));
+		//      ModHelper.AddModelToPool(typeof(IroncladRelicPool), typeof(NanaRelicTest));
+		
+		var harmony = new Harmony("SlayTheNANA");
 		harmony.PatchAll();
 		ScriptManagerBridge.LookupScriptsInAssembly(typeof(SlayTheNANAInitializer).Assembly);
 

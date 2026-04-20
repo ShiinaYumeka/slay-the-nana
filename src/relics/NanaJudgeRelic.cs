@@ -20,17 +20,17 @@ namespace SlayTheNANA;
 
 public sealed class NanaJudgeRelic : RelicModel
 {
-    public override RelicRarity Rarity => RelicRarity.Common;
-    protected override IEnumerable<DynamicVar> CanonicalVars => [(new CardsVar(1))];
+	public override RelicRarity Rarity => RelicRarity.Common;
+	protected override IEnumerable<DynamicVar> CanonicalVars => [(new CardsVar(1))];
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
+	protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
 
-    public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext, Creature? dealer, DamageResult result, ValueProp props, Creature target, CardModel? cardSource)
-    {
-        if ((dealer == base.Owner.Creature || dealer?.PetOwner == base.Owner) && !target.IsPlayer)
-        {
-            Flash();
-            await PowerCmd.Apply<NanaKarma>(target, 1, base.Owner.Creature, null);
-        }
-    }
+	public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext, Creature? dealer, DamageResult result, ValueProp props, Creature target, CardModel? cardSource)
+	{
+		if ((dealer == base.Owner.Creature || dealer?.PetOwner == base.Owner) && !target.IsPlayer)
+		{
+			Flash();
+			await PowerCmd.Apply<NanaKarma>(target, 1, base.Owner.Creature, null);
+		}
+	}
 }

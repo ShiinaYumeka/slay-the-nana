@@ -18,7 +18,7 @@ public sealed class NanaFinalTrial : CardModel
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
     public NanaFinalTrial()
-		: base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AllEnemies)
+		: base(3, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
 	{
 	}
 
@@ -29,6 +29,6 @@ public sealed class NanaFinalTrial : CardModel
 
 	protected override void OnUpgrade()
 	{
-		AddKeyword(CardKeyword.Innate);
+		RemoveKeyword(CardKeyword.Exhaust);
 	}
 }

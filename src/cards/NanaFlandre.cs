@@ -19,7 +19,7 @@ public sealed class NanaFlandre : CardModel
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaFlandre", 2m)];
     public NanaFlandre()
-        : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+        : base(3, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
     }
 
@@ -30,7 +30,7 @@ public sealed class NanaFlandre : CardModel
 
     protected override void OnUpgrade()
     {
-        base.EnergyCost.UpgradeBy(-1);
+        base.DynamicVars["NanaFlandre"].UpgradeValueBy(1);
 
     }
 }

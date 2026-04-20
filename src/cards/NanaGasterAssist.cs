@@ -18,7 +18,7 @@ public sealed class NanaGasterAssist : CardModel
 {
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Exhaust)];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(30m, ValueProp.Move), new EnergyVar(10), new PowerVar<FrailPower>(3m), new PowerVar<WeakPower>(3m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(16m, ValueProp.Move), new EnergyVar(6), new CardsVar(3), new PowerVar<FrailPower>(3m), new PowerVar<WeakPower>(3m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaGasterAssistPower>()),base.EnergyHoverTip];
     public NanaGasterAssist()
         : base(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
@@ -29,12 +29,12 @@ public sealed class NanaGasterAssist : CardModel
     {
         await PlayerCmd.GainEnergy(base.DynamicVars.Energy.IntValue, base.Owner);
         await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
+        await CardPileCmd.Draw(choiceContext, base.DynamicVars.Cards.BaseValue, base.Owner);
         await PowerCmd.Apply<NanaGasterAssistPower>(base.Owner.Creature, 1, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        AddKeyword(CardKeyword.Retain);
-        AddKeyword(CardKeyword.Innate);
+        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

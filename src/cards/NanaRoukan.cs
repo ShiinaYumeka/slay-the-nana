@@ -15,7 +15,7 @@ namespace SlayTheNANA;
 
 public sealed class NanaRoukan : CardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8m, ValueProp.Move)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(9m, ValueProp.Move)];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>())];
     public NanaRoukan()
@@ -39,6 +39,6 @@ public sealed class NanaRoukan : CardModel
 
 	protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(2m);
+        base.DynamicVars.Damage.UpgradeValueBy(3m);
     }
 }

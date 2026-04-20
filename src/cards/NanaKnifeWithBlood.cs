@@ -17,13 +17,13 @@ public sealed class NanaKnifeWithBlood : CardModel
 {
 	protected override IEnumerable<DynamicVar> CanonicalVars => [
 		new CalculationBaseVar(8m),
-		new ExtraDamageVar(2m),
+		new ExtraDamageVar(3m),
 		new CalculatedDamageVar(ValueProp.Move).WithMultiplier((CardModel card, Creature? target) => card.Owner.Creature?.GetPowerAmount<NanaKarma>() ?? 0)];
 
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
 
 	public NanaKnifeWithBlood()
-		: base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+		: base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 	{
 	}
 

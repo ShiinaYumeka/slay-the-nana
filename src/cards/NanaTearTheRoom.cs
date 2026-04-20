@@ -19,7 +19,7 @@ public sealed class NanaTearTheRoom: CardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips => (HoverTipFactory.FromCardWithCardHoverTips<NanaTearTheRoom2>());
 
     public NanaTearTheRoom()
-        : base(2, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+        : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
     }
 

@@ -15,10 +15,11 @@ namespace SlayTheNANA;
 
 public sealed class NanaDoubleSin : CardModel
 {
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Exhaust)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
 
     public NanaDoubleSin()
-        : base(1, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
     }
 

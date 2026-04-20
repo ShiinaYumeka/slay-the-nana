@@ -15,7 +15,7 @@ namespace SlayTheNANA;
 public sealed class NanaThreeTrial : CardModel
 {
 	//public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Exhaust)];
-	protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaKarma", 24m), new DynamicVar("NanaPlantMagic", 6m), new DynamicVar("NanaKeepMoving", 6m), new DynamicVar("NanaFcCost", 50m)];
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaKarma", 18m), new DynamicVar("NanaPlantMagic", 6m), new DynamicVar("NanaKeepMoving", 6m), new DynamicVar("NanaFcCost", 50m)];
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>()), (HoverTipFactory.FromPower<NanaPlantMagic>()), (HoverTipFactory.FromPower<NanaKeepMoving>())];
     protected override bool IsPlayable => base.Owner.Creature.GetPowerAmount<NanaFc>() >= base.DynamicVars["NanaFcCost"].BaseValue;
     protected override bool ShouldGlowGoldInternal => IsPlayable;
@@ -38,6 +38,6 @@ public sealed class NanaThreeTrial : CardModel
 
 	protected override void OnUpgrade()
 	{
-		base.DynamicVars["NanaFcCost"].UpgradeValueBy(-13m);
+		base.DynamicVars["NanaKarma"].UpgradeValueBy(6m);
     }
 }

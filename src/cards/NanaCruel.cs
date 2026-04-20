@@ -21,6 +21,7 @@ public sealed class NanaCruel : CardModel
     {
     }
 
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Exhaust)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
@@ -29,7 +30,6 @@ public sealed class NanaCruel : CardModel
 
     protected override void OnUpgrade()
     {
-        base.EnergyCost.UpgradeBy(-1);
-
+        AddKeyword(CardKeyword.Innate);
     }
 }

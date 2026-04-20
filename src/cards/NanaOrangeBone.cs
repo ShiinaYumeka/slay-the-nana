@@ -14,11 +14,11 @@ namespace SlayTheNANA;
 
 public sealed class NanaOrangeBone : CardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move), new DynamicVar("NanaKeepMoving", 2m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move), new DynamicVar("NanaKeepMoving", 3m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKeepMoving>())];
 
     public NanaOrangeBone()
-        : base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
+        : base(2, CardType.Attack, CardRarity.Rare, TargetType.AllEnemies)
     {
     }
 
