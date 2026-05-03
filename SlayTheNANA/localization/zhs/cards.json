@@ -7,7 +7,7 @@
 	"NANA_BONE_COMBO.title": "骨头连击",
 	"NANA_BONE_COMBO.description": "造成{Damage:diff()}点伤害{Repeat:diff()}次。",
 	"NANA_BONE_STORM.title": "骨头风暴",
-	"NANA_BONE_STORM.description": "造成{Damage:diff()}点伤害2X次。如果X的最终数值为{Energy:diff()}或以上，则将X的数值翻倍。",
+	"NANA_BONE_STORM.description": "造成{Damage:diff()}点伤害X次。如果X的最终数值为{Energy:diff()}或以上，则将X的数值翻倍。",
 	"NANA_RED_BONE.title": "红色骨头",
 	"NANA_RED_BONE.description": "造成{Damage:diff()}点伤害。\n获得{Block:diff()}点[gold]格挡[/gold]。",
 	"NANA_BONE_RETURN.title": "旋骨连击",

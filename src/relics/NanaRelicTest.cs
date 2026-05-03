@@ -36,8 +36,8 @@ public sealed class NanaRelicTest : CustomRelicModel
 		{
 			(await PowerCmd.Apply<NanaFc>(dealer, result.UnblockedDamage, base.Owner.Creature, null))?.NanaFcGain();
 		}
-    }
+	}
 
-    public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<NanaRelicTestPlus>().ToMutable(); // 实现方法。自己更改类型。
+	public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<NanaRelicTestPlus>().ToMutable(); // 实现方法。自己更改类型。
 
 }
