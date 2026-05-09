@@ -29,7 +29,7 @@ public sealed class NanaFloweyTurretPower : PowerModel
     {
         if (dealer == base.Owner && props.IsPoweredAttack_())
         {
-            base.DynamicVars["AttackDamage"].BaseValue += 1;
+            base.DynamicVars["AttackDamage"].BaseValue += 2;
             base.DynamicVars["AttackDamage"].PreviewValue = base.DynamicVars["AttackDamage"].BaseValue;
         }
     }

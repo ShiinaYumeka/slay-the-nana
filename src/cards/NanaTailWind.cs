@@ -14,8 +14,9 @@ namespace SlayTheNANA;
 
 public sealed class NanaTailWind : CardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("DexterityLoss", 2m)];
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>())];
+    public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Exhaust)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("DexterityLoss", 2m), new PowerVar<VulnerablePower>(1m)];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>()), (HoverTipFactory.FromPower<VulnerablePower>())];
 
     public NanaTailWind()
         : base(1, CardType.Skill, CardRarity.Common, TargetType.AllEnemies)
@@ -27,10 +28,11 @@ public sealed class NanaTailWind : CardModel
     {
         await PowerCmd.Apply<DexterityPower>(base.CombatState.HittableEnemies, -base.DynamicVars["DexterityLoss"].BaseValue, base.Owner.Creature, this);
 
+        await PowerCmd.Apply<VulnerablePower>(base.CombatState.HittableEnemies, base.DynamicVars.Vulnerable.BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["DexterityLoss"].UpgradeValueBy(1m);
+        base.DynamicVars.Vulnerable.UpgradeValueBy(1m);
     }
 }

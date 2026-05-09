@@ -7,11 +7,13 @@ using MegaCrit.Sts2.Core.GameActions.Multiplayer;
 using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Models;
+using SlayTheNANA.src.cardtags;
 
 namespace SlayTheNANA;
 
 public sealed class NanaBoneStorm : CardModel
 {
+	protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
 	protected override bool HasEnergyCostX => true;
 
 	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8m, ValueProp.Move), new EnergyVar(4)];

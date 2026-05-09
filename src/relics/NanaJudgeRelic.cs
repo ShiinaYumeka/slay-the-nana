@@ -20,7 +20,7 @@ namespace SlayTheNANA;
 
 public sealed class NanaJudgeRelic : RelicModel
 {
-	public override RelicRarity Rarity => RelicRarity.Common;
+	public override RelicRarity Rarity => RelicRarity.Uncommon;
 	protected override IEnumerable<DynamicVar> CanonicalVars => [(new CardsVar(1))];
 
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];

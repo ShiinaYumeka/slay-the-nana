@@ -36,6 +36,6 @@ public sealed class NanaDoubleSin : CardModel
 
     protected override void OnUpgrade()
     {
-        AddKeyword(CardKeyword.Retain);
+        RemoveKeyword(CardKeyword.Exhaust);
     }
 }

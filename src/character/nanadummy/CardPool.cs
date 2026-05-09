@@ -25,7 +25,7 @@ public sealed class NanaDummyCardPool : CardPoolModel
 
 	protected override CardModel[] GenerateAllCards()
 	{
-		return new CardModel[70]
+		return new CardModel[80]
         {
             ModelDb.Card<NanaStrikeDummy>(),
             ModelDb.Card<NanaDefendDummy>(),
@@ -40,12 +40,15 @@ public sealed class NanaDummyCardPool : CardPoolModel
 			ModelDb.Card<NanaVine>(),
 			ModelDb.Card<NanaOrangeBone>(),
 			ModelDb.Card<NanaBlueBone>(),
+			ModelDb.Card<NanaBoneSpecial>(),
+			ModelDb.Card<NanaSkullForm>(),
 			ModelDb.Card<NanaThreeTrial>(),
 			ModelDb.Card<NanaButter>(),
 			ModelDb.Card<NanaClaw>(),
 			ModelDb.Card<NanaGasterAssist>(),
 			ModelDb.Card<NanaRedTrident>(),
 			ModelDb.Card<NanaMurder>(),
+			ModelDb.Card<NanaMercyWorld>(),
 			ModelDb.Card<NanaPurpleSmoke>(),
 			ModelDb.Card<NanaPurpleBone>(),
 			ModelDb.Card<NanaBoneReturn>(),
@@ -60,11 +63,13 @@ public sealed class NanaDummyCardPool : CardPoolModel
             ModelDb.Card<NanaDoubleSin>(),
             ModelDb.Card<NanaCruel>(),
             ModelDb.Card<NanaBoneSpike>(),
+            ModelDb.Card<NanaFatalBoneSpike>(),
             ModelDb.Card<NanaPf666>(),
             ModelDb.Card<NanaStringSound>(),
             ModelDb.Card<NanaTearTheRoom>(),
             ModelDb.Card<NanaTearTheRoom2>(),
             ModelDb.Card<NanaGravity>(),
+            ModelDb.Card<NanaWhirlwind>(),
             ModelDb.Card<NanaRedBone>(),
             ModelDb.Card<NanaSleep>(),
             ModelDb.Card<NanaWaterDispenser>(),
@@ -87,15 +92,20 @@ public sealed class NanaDummyCardPool : CardPoolModel
             ModelDb.Card<NanaTurret>(),
             ModelDb.Card<NanaShadeSoul>(),
             ModelDb.Card<NanaElemental>(),
+            ModelDb.Card<NanaStarQuiet>(),
+            ModelDb.Card<NanaSacrificeRam>(),
             ModelDb.Card<NanaBoneWall>(),
             ModelDb.Card<NanaFireShield>(),
             ModelDb.Card<NanaIceShield>(),
             ModelDb.Card<NanaChocolate>(),
             ModelDb.Card<NanaTricolorBone>(),
             ModelDb.Card<NanaFlandre>(),
+            ModelDb.Card<NanaPocketWatch>(),
+            ModelDb.Card<NanaMurderer>(),
             ModelDb.Card<NanaFloweyTurret>(),
             ModelDb.Card<NanaWhiteCard>(),
             ModelDb.Card<NanaBin>(),
+            ModelDb.Card<NanaBlockRiposte>(),
             ModelDb.Card<NanaGrassBody>()
         };
 	}

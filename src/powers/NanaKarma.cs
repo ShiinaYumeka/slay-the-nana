@@ -38,7 +38,7 @@ public sealed class NanaKarma : PowerModel
             }
             else
             {
-                decimal amountToRemove = (base.Amount + 3) / 4;
+                decimal amountToRemove = 1;
                 await PowerCmd.ModifyAmount(this, -amountToRemove, null, null);
             }
         }

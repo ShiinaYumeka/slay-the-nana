@@ -11,6 +11,7 @@ using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.GameInfo.Objects;
+using SlayTheNANA.src.cardtags;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace SlayTheNANA;
 
 public sealed class NanaTricolorBone : CardModel
 {
+    protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
 
     public bool IsNanaFcMove = true;
     public NanaTricolorBone()
@@ -30,12 +32,18 @@ public sealed class NanaTricolorBone : CardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromKeyword(CardKeyword.Ethereal))];
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-        CardModel card = CardFactory.GetDistinctForCombat(base.Owner, [(ModelDb.Card<NanaBlueBone>()), (ModelDb.Card<NanaOrangeBone>()), (ModelDb.Card<NanaPurpleBone>()), (ModelDb.Card<NanaRedBone>()), (ModelDb.Card<NanaBoneStorm>()), (ModelDb.Card<NanaBoneCombo>()), (ModelDb.Card<NanaBoneReturn>()), (ModelDb.Card<NanaBoneSpike>())], 1, base.Owner.RunState.Rng.CombatCardGeneration).FirstOrDefault();
+        IEnumerable<CardModel> boneCandidates =
+            from c in base.Owner.Character.CardPool.GetUnlockedCards(base.Owner.UnlockState, base.Owner.RunState.CardMultiplayerConstraint)
+            where c.Tags.Contains(CustomCardTag.Bone) && c.GetType() != typeof(NanaSkullForm)
+            select c;
 
-        //if (base.IsUpgraded)
-        //{
+        CardModel? card = CardFactory.GetDistinctForCombat(base.Owner, boneCandidates, 1, base.Owner.RunState.Rng.CombatCardGeneration).FirstOrDefault();
+        if (card == null)
+        {
+            return;
+        }
+
         CardCmd.Upgrade(card);
-        //}
         card.SetToFreeThisTurn();
         card.AddKeyword(CardKeyword.Ethereal);
 

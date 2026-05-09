@@ -5,7 +5,10 @@
   	"NANA_JUDGE_RELIC.title": "审判者",
   	"NANA_JUDGE_RELIC.description": "每次造成伤害给予一层[gold]业报惩罚[/gold]。",
   	"NANA_JUDGE_RELIC.flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
-  	"NANA_RELIC_TEST.title": "NANA竞技场",
-  	"NANA_RELIC_TEST.description": "每次造成伤害根据伤害量获得[purple]最终充能[/purple]。",
-  	"NANA_RELIC_TEST.flavor": "[red]这个遗物的细节将在未来揭晓……[/red]"
+  	"relics.SLAYTHENANA-NANA_RELIC_TEST.title": "NANA竞技场",
+  	"relics.NANA_SLAYTHENANA-NANA_RELIC_TEST.description": "每次造成伤害根据伤害量获得[purple]最终充能[/purple]。",
+  	"relics.NANA_SLAYTHENANA-NANA_RELIC_TEST.flavor": "[red]这个遗物的细节将在未来揭晓……[/red]",
+  	"relics.SLAYTHENANA-NANA_RELIC_TEST_PLUS.title": "NANA竞技场Plus",
+  	"relics.NANA_SLAYTHENANA-NANA_RELIC_TEST_PLUS.description": "每次造成伤害根据伤害量获得[purple]最终充能[/purple]。\n每次回合开始时，获得[purple]99[/purple]点[purple]最终充能[/purple]。",
+  	"relics.NANA_SLAYTHENANA-NANA_RELIC_TEST_PLUS.flavor": "[red]这个遗物的细节将在未来揭晓……[/red]"
 }

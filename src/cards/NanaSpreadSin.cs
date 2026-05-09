@@ -19,7 +19,7 @@ public sealed class NanaSpreadSin : CardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
 
     public NanaSpreadSin()
-        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+        : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
     {
     }
 
@@ -38,6 +38,6 @@ public sealed class NanaSpreadSin : CardModel
 
     protected override void OnUpgrade()
     {
-        AddKeyword(CardKeyword.Retain);
+        AddKeyword(CardKeyword.Ethereal);
     }
 }

@@ -14,11 +14,10 @@ namespace SlayTheNANA;
 
 public sealed class NanaFinalTrial : CardModel
 {
-	public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Exhaust)];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
     public NanaFinalTrial()
-		: base(3, CardType.Skill, CardRarity.Rare, TargetType.AllEnemies)
+		: base(3, CardType.Power, CardRarity.Rare, TargetType.AllEnemies)
 	{
 	}
 
@@ -29,6 +28,6 @@ public sealed class NanaFinalTrial : CardModel
 
 	protected override void OnUpgrade()
 	{
-		RemoveKeyword(CardKeyword.Exhaust);
+		AddKeyword(CardKeyword.Innate);
 	}
 }
