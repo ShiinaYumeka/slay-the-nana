@@ -11,9 +11,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaShadeSoul : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaShadeSoul : NanaCardModel
 {
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(10m, ValueProp.Move), new DynamicVar("NanaFcCost", 15m)];
@@ -32,7 +35,7 @@ public sealed class NanaShadeSoul : CardModel
         int num = 1;
         if (base.Owner.Creature.GetPowerAmount<NanaFc>() >= base.DynamicVars["NanaFcCost"].BaseValue)
         {
-            await PowerCmd.Apply<NanaFc>(base.Owner.Creature, -base.DynamicVars["NanaFcCost"].BaseValue, base.Owner.Creature, this);
+            await PowerCmd.Apply<NanaFc>(choiceContext, base.Owner.Creature, -base.DynamicVars["NanaFcCost"].BaseValue, base.Owner.Creature, this);
             num = num + 2;
         }
         for (int i = 0; i < num; i++)

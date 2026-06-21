@@ -11,15 +11,18 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaDoubleSin : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaDoubleSin : NanaCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Exhaust)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
 
     public NanaDoubleSin()
-        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+        : base(2, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
     }
 
@@ -28,7 +31,7 @@ public sealed class NanaDoubleSin : CardModel
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.AttackAnimDelay);
         if (cardPlay.Target.HasPower<NanaKarma>())
         {
-            await PowerCmd.Apply<NanaKarma>(cardPlay.Target, cardPlay.Target.GetPowerAmount<NanaKarma>(), base.Owner.Creature, this);
+            await PowerCmd.Apply<NanaKarma>(choiceContext, cardPlay.Target, cardPlay.Target.GetPowerAmount<NanaKarma>(), base.Owner.Creature, this);
 
 
         }
@@ -36,6 +39,6 @@ public sealed class NanaDoubleSin : CardModel
 
     protected override void OnUpgrade()
     {
-        RemoveKeyword(CardKeyword.Exhaust);
+        base.EnergyCost.UpgradeBy(-1);
     }
 }

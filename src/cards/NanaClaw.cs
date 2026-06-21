@@ -12,9 +12,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaClaw : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaClaw : NanaCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
         new CalculationBaseVar(5m),
@@ -42,7 +45,7 @@ public sealed class NanaClaw : CardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.ExtraDamage.UpgradeValueBy(1m);
+        base.DynamicVars.CalculationBase.UpgradeValueBy(3m);
     }
 
 }

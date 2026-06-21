@@ -26,9 +26,9 @@ public sealed class NanaBloodPoolStorage: PowerModel
     public override bool ShouldPlayVfx => false;
 
     public override PowerStackType StackType => PowerStackType.Counter;
-    public override async Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props, Creature? dealer, CardModel? cardSource)
+    public override async Task BeforeDamageReceived(PlayerChoiceContext choiceContext, Creature target, decimal amount, ValueProp props, Creature? dealer, CardModel? cardSource)
     {
-        if (target == base.Owner && dealer != null && !result.WasFullyBlocked)
+        if (target == base.Owner && dealer != null && amount > base.Owner.Block)
         {
             Flash();
             await CreatureCmd.GainBlock(base.Owner, base.Amount, ValueProp.Unpowered, null);

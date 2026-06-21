@@ -9,9 +9,12 @@ using MegaCrit.Sts2.Core.ValueProps;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaMurderer : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaMurderer : NanaCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Ethereal)];
 
@@ -30,7 +33,7 @@ public sealed class NanaMurderer : CardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<NanaMurdererPower>(
+        await PowerCmd.Apply<NanaMurdererPower>(choiceContext,
             base.Owner.Creature,
             base.DynamicVars["NanaKarmaPerAttack"].BaseValue,
             base.Owner.Creature,

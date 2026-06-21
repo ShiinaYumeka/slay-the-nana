@@ -12,14 +12,17 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaSpreadSin : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaSpreadSin : NanaCardModel
 {
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
 
     public NanaSpreadSin()
-        : base(0, CardType.Skill, CardRarity.Common, TargetType.AnyEnemy)
+        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
     }
 
@@ -30,7 +33,7 @@ public sealed class NanaSpreadSin : CardModel
         {
             int num = cardPlay.Target.GetPowerAmount<NanaKarma>();
             //await PowerCmd.Remove<NanaKarma>(cardPlay.Target);
-            await PowerCmd.Apply<NanaKarma>(base.CombatState.HittableEnemies.Except([(cardPlay.Target)]), num, base.Owner.Creature, this);
+            await PowerCmd.Apply<NanaKarma>(choiceContext, base.CombatState.HittableEnemies.Except([(cardPlay.Target)]), num, base.Owner.Creature, this);
 
 
         }
@@ -38,6 +41,6 @@ public sealed class NanaSpreadSin : CardModel
 
     protected override void OnUpgrade()
     {
-        AddKeyword(CardKeyword.Ethereal);
+        AddKeyword(CardKeyword.Retain);
     }
 }

@@ -13,12 +13,16 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+using MegaCrit.Sts2.Core.Entities.Creatures;
+
 namespace SlayTheNANA;
 
-public sealed class NanaBoneReturn: CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaBoneReturn: NanaCardModel
 {
 	protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
-	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6m, ValueProp.Move),new RepeatVar(2)];
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move),new RepeatVar(2)];
 
 	public NanaBoneReturn()
 		: base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
@@ -33,9 +37,9 @@ public sealed class NanaBoneReturn: CardModel
 			.WithHitFx("vfx/vfx_attack_blunt", null, null)
 			.Execute(choiceContext);
 	}
-	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
 	{
-		if (player == base.Owner && CombatManager.Instance.History.CardPlaysFinished.Any((CardPlayFinishedEntry e) => e.RoundNumber == base.CombatState.RoundNumber - 1 && e.CardPlay.Card == this))
+		if (player == base.Owner && CombatManager.Instance.History.CardPlaysFinished.Any((CardPlayFinishedEntry e) => e.HappenedLastPlayerTurn(base.Owner) && e.CardPlay.Card == this))
 		{
 			CardPile? pile = base.Pile;
 			if (pile == null || pile.Type != PileType.Hand)
@@ -44,6 +48,7 @@ public sealed class NanaBoneReturn: CardModel
 			}
 		}
 	}
+	
 
 	protected override void OnUpgrade()
 	{

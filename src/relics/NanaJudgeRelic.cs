@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 
 namespace SlayTheNANA;
 
+[Pool(typeof(NanaDummyRelicPool))]
 public sealed class NanaJudgeRelic : RelicModel
 {
 	public override RelicRarity Rarity => RelicRarity.Uncommon;
@@ -30,7 +31,7 @@ public sealed class NanaJudgeRelic : RelicModel
 		if ((dealer == base.Owner.Creature || dealer?.PetOwner == base.Owner) && !target.IsPlayer)
 		{
 			Flash();
-			await PowerCmd.Apply<NanaKarma>(target, 1, base.Owner.Creature, null);
+			await PowerCmd.Apply<NanaKarma>(choiceContext, target, 1, base.Owner.Creature, null);
 		}
 	}
 }

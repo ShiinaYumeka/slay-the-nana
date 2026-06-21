@@ -12,9 +12,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaSleep: CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaSleep: NanaCardModel
 {
 
 
@@ -27,7 +30,7 @@ public sealed class NanaSleep: CardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<DexterityPower>(base.Owner.Creature, -base.DynamicVars["DexterityLoss"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<DexterityPower>(choiceContext, base.Owner.Creature, -base.DynamicVars["DexterityLoss"].BaseValue, base.Owner.Creature, this);
         await CreatureCmd.Heal(base.Owner.Creature, base.DynamicVars.Heal.BaseValue);
     }
 

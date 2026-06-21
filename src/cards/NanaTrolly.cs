@@ -12,9 +12,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaTrolly : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaTrolly : NanaCardModel
 {
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaTrolly", 2m)];
@@ -25,7 +28,7 @@ public sealed class NanaTrolly : CardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<NanaTrollyPower>(base.Owner.Creature, base.DynamicVars["NanaTrolly"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<NanaTrollyPower>(choiceContext, base.Owner.Creature, base.DynamicVars["NanaTrolly"].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

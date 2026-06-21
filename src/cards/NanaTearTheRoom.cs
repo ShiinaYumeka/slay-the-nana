@@ -11,9 +11,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaTearTheRoom: CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaTearTheRoom: NanaCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8m, ValueProp.Move), new DynamicVar("DexterityLoss", 1m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => (HoverTipFactory.FromCardWithCardHoverTips<NanaTearTheRoom2>());
@@ -30,7 +33,7 @@ public sealed class NanaTearTheRoom: CardModel
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_flying_slash", null, null)
             .Execute(choiceContext);
-        await PowerCmd.Apply<DexterityPower>(cardPlay.Target, -base.DynamicVars["DexterityLoss"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<DexterityPower>(choiceContext, cardPlay.Target, -base.DynamicVars["DexterityLoss"].BaseValue, base.Owner.Creature, this);
 
 
         CardModel card = base.CombatState.CreateCard<NanaTearTheRoom2>(base.Owner);
@@ -38,7 +41,7 @@ public sealed class NanaTearTheRoom: CardModel
         {
              CardCmd.Upgrade(card);
         }
-        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, addedByPlayer: true);
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, base.Owner);
 
     }
 

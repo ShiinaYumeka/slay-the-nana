@@ -11,9 +11,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaWhiteCard : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaWhiteCard : NanaCardModel
 {
 
     public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Retain)];

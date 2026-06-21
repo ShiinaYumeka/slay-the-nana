@@ -14,9 +14,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaShiftTheBlame : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaShiftTheBlame : NanaCardModel
 {
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
@@ -34,12 +37,12 @@ public sealed class NanaShiftTheBlame : CardModel
         int num = base.Owner.Creature.GetPowerAmount<NanaKarma>();
         await PowerCmd.Remove<NanaKarma>(base.Owner.Creature);
 
-        await PowerCmd.Apply<NanaKarma>(cardPlay.Target, num, base.Owner.Creature, this);
+        await PowerCmd.Apply<NanaKarma>(choiceContext, cardPlay.Target, num, base.Owner.Creature, this);
     }
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
-        if (player == base.Owner && CombatManager.Instance.History.CardPlaysFinished.Any((CardPlayFinishedEntry e) => e.RoundNumber == base.CombatState.RoundNumber - 1 && e.CardPlay.Card == this))
+        if (player == base.Owner && CombatManager.Instance.History.CardPlaysFinished.Any((CardPlayFinishedEntry e) => e.HappenedLastPlayerTurn(base.Owner) && e.CardPlay.Card == this))
         {
             CardPile? pile = base.Pile;
             if (pile == null || pile.Type != PileType.Hand)

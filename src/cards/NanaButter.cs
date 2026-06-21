@@ -11,11 +11,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaButter: CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaButter: NanaCardModel
 {
-	protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<WeakPower>(1m), new DynamicVar("DexterityLoss", 3m)];
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<WeakPower>(1m), new DynamicVar("DexterityLoss", 2m)];
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>())];
 
 	public NanaButter()
@@ -29,8 +32,8 @@ public sealed class NanaButter: CardModel
 	{
 
 		await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.AttackAnimDelay);
-		await PowerCmd.Apply<WeakPower>(cardPlay.Target, base.DynamicVars.Weak.BaseValue, base.Owner.Creature, this);
-		await PowerCmd.Apply<DexterityPower>(cardPlay.Target, -base.DynamicVars["DexterityLoss"].BaseValue, base.Owner.Creature, this);
+		await PowerCmd.Apply<WeakPower>(choiceContext, cardPlay.Target, base.DynamicVars.Weak.BaseValue, base.Owner.Creature, this);
+		await PowerCmd.Apply<DexterityPower>(choiceContext, cardPlay.Target, -base.DynamicVars["DexterityLoss"].BaseValue, base.Owner.Creature, this);
 	}
 
 	protected override void OnUpgrade()

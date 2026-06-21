@@ -25,7 +25,7 @@
       <HintPath>libs\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="BaseLib">
-      <HintPath>..\..\SteamLibrary\steamapps\common\Slay the Spire 2\mods\BaseLib\BaseLib.dll</HintPath>
+      <HintPath>libs\BaseLib.dll</HintPath>
     </Reference>
     <Reference Include="sts2">
       <HintPath>libs\sts2.dll</HintPath>

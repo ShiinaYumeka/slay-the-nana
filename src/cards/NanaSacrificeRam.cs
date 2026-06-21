@@ -9,14 +9,17 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaSacrificeRam : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaSacrificeRam : NanaCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new HpLossVar(2m),
-        new CalculationBaseVar(15m),
+        new CalculationBaseVar(16m),
         new ExtraDamageVar(1m),
         new CalculatedDamageVar(ValueProp.Move).WithMultiplier((CardModel card, Creature? _) =>
         {
@@ -48,6 +51,6 @@ public sealed class NanaSacrificeRam : CardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.CalculationBase.UpgradeValueBy(5m);
+        base.DynamicVars.CalculationBase.UpgradeValueBy(6m);
     }
 }

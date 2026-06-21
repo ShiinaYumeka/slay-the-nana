@@ -11,17 +11,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaFatalBoneSpike : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaFatalBoneSpike : NanaCardModel
 {
     protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
         new CalculationBaseVar(10m),
-        new ExtraDamageVar(3m),
-        new CalculatedDamageVar(ValueProp.Move).WithMultiplier((CardModel card, Creature? _) =>
-            card.Owner != null ? CountBoneSpikesInExhaust(card.Owner) : 0)
+        new ExtraDamageVar(4m),
+        new CalculatedDamageVar(ValueProp.Move).WithMultiplier((CardModel card, Creature? _) => PileType.Exhaust.GetPile(card.Owner).Cards.Count)
     ];
 
     public NanaFatalBoneSpike()
@@ -39,14 +41,7 @@ public sealed class NanaFatalBoneSpike : CardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.CalculationBase.UpgradeValueBy(4m);
+        base.DynamicVars.ExtraDamage.UpgradeValueBy(2m);
     }
 
-    private static int CountBoneSpikesInExhaust(Player owner)
-    {
-        var pile = PileType.Exhaust.GetPile(owner);
-        return pile?.Cards == null
-            ? 0
-            : pile.Cards.Count(c => c.GetType() == typeof(NanaBoneSpike));
-    }
 }

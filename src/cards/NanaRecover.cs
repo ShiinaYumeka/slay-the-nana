@@ -12,9 +12,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaRecover : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaRecover : NanaCardModel
 {
 
 

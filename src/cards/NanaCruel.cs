@@ -12,19 +12,22 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaCruel : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaCruel : NanaCardModel
 {
     public NanaCruel()
-        : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+        : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
     }
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<NanaCruelPower>(base.Owner.Creature, 1, base.Owner.Creature, this);
+        await PowerCmd.Apply<NanaCruelPower>(choiceContext, base.Owner.Creature, 1, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

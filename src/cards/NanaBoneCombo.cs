@@ -9,16 +9,19 @@ using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Models;
 using SlayTheNANA.src.cardtags;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaBoneCombo : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaBoneCombo : NanaCardModel
 {
 	protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
 	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(3m, ValueProp.Move),new RepeatVar(3)];
 
 
 	public NanaBoneCombo()
-		: base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
+		: base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
 	{
 	}
 

@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 
 namespace SlayTheNANA;
 
+[Pool(typeof(NanaDummyRelicPool))]
 public sealed class NanaRedTridentRelic : RelicModel
 {
 	public override RelicRarity Rarity => RelicRarity.Common;
@@ -25,12 +26,12 @@ public sealed class NanaRedTridentRelic : RelicModel
 
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => HoverTipFactory.FromCardWithCardHoverTips<NanaRedTrident>();
 
-	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+	public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
 	{
 		if (player == base.Owner && combatState.RoundNumber == 1)
 		{
 			CardModel card = combatState.CreateCard(ModelDb.Card<NanaRedTrident>(),base.Owner);
-			await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, addedByPlayer: true);
+			await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, player);
 		}
 	}
 }

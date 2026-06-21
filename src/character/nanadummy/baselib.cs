@@ -73,7 +73,7 @@ public class NanaDummy : PlaceholderCharacterModel
 
 	public override CardPoolModel CardPool => ModelDb.CardPool<NanaDummyCardPool>();
 	public override RelicPoolModel RelicPool => ModelDb.RelicPool<NanaDummyRelicPool>();
-	public override PotionPoolModel PotionPool => ModelDb.PotionPool<IroncladPotionPool>();
+	public override PotionPoolModel PotionPool => ModelDb.PotionPool<NanaDummyPotionPool>();
 
 	// 初始卡组
 	public override IEnumerable<CardModel> StartingDeck => [

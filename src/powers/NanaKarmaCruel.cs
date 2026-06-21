@@ -24,13 +24,13 @@ public sealed class NanaKarmaCruel : PowerModel
     public override PowerStackType StackType => PowerStackType.Counter;
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
 
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != base.Owner.Side)
         {
             return;
         }
-        await PowerCmd.Apply<NanaKarma>(base.Owner, base.Amount, null, null);
+        await PowerCmd.Apply<NanaKarma>(new ThrowingPlayerChoiceContext(), base.Owner, base.Amount, null, null);
         await PowerCmd.Remove(this);
     }
 }

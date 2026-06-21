@@ -33,11 +33,11 @@ public sealed class NanaInsanityPower : PowerModel
     {
         if (dealer == base.Owner && props.IsPoweredAttack_() && result.UnblockedDamage > 0)
         {
-            await PowerCmd.Apply<NanaInsanityPower>(base.Owner, 1, base.Owner, null);
+            await PowerCmd.Apply<NanaInsanityPower>(choiceContext, base.Owner, 1, base.Owner, null);
             UpdateData();
         }
     }
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task BeforeSideTurnStart(PlayerChoiceContext choiceContext, CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != base.Owner.Side)
         {
@@ -46,8 +46,8 @@ public sealed class NanaInsanityPower : PowerModel
         await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), base.Owner, base.Amount / 10, ValueProp.Unpowered, null, null);
         if (base.Owner.IsAlive)
         {
-            await PowerCmd.Apply<VigorPower>(base.Owner, base.Amount / 5, base.Owner, null);
-            await CreatureCmd.GainBlock(base.Owner, base.Amount / 5, ValueProp.Unpowered, null);
+            await PowerCmd.Apply<VigorPower>(new ThrowingPlayerChoiceContext(), base.Owner, base.Amount / 4, base.Owner, null);
+            await CreatureCmd.GainBlock(base.Owner, base.Amount / 4, ValueProp.Unpowered, null);
         }
 
     }
@@ -55,6 +55,6 @@ public sealed class NanaInsanityPower : PowerModel
     {
         AssertMutable();
         base.DynamicVars["NanaInsanityDamage"].BaseValue = base.Amount / 10;
-        base.DynamicVars["NanaInsanityBlock"].BaseValue = base.Amount / 5;
+        base.DynamicVars["NanaInsanityBlock"].BaseValue = base.Amount / 4;
     }
 }

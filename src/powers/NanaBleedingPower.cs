@@ -23,7 +23,7 @@ public sealed class NanaBleedingPower : PowerModel
     public override PowerType Type => PowerType.Debuff;
 
     public override PowerStackType StackType => PowerStackType.Counter;
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != base.Owner.Side)
         {
@@ -33,7 +33,7 @@ public sealed class NanaBleedingPower : PowerModel
         if (base.Owner.IsAlive )
         {
             decimal amountToRemove = (base.Amount + 3) / 4;
-            await PowerCmd.ModifyAmount(this, -amountToRemove, null, null);
+            await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, -amountToRemove, null, null);
         }
         else
         {

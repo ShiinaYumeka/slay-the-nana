@@ -16,12 +16,15 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaMotionShield : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaMotionShield : NanaCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new CalculationBaseVar(12m),
+        new CalculationBaseVar(10m),
         new CalculationExtraVar(2m),
         new CalculatedBlockVar(ValueProp.Move).WithMultiplier((CardModel card, Creature? target) => card.Owner.Creature?.GetPowerAmount<DexterityPower>() ?? 0)
         ];
@@ -40,6 +43,6 @@ public sealed class NanaMotionShield : CardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.CalculationExtra.UpgradeValueBy(1m);
+        base.DynamicVars.CalculationBase.UpgradeValueBy(4m);
     }
 }

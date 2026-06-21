@@ -24,13 +24,13 @@ public sealed class NanaKeepMoving : PowerModel
     public override PowerStackType StackType => PowerStackType.Counter;
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>())];
 
-    public override async Task AfterSideTurnStart(CombatSide side, CombatState combatState)
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
     {
         if (side != base.Owner.Side)
         {
             return;
         }
-        await PowerCmd.Apply<DexterityPower>(base.Owner, -1, base.Owner, null);
+        await PowerCmd.Apply<DexterityPower>(new ThrowingPlayerChoiceContext(), base.Owner, -1, base.Owner, null);
         if (base.Owner.GetPowerAmount<DexterityPower>() < 0 )
         {
             await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), base.Owner, base.Owner.GetPowerAmount<DexterityPower>() * -3, ValueProp.Unblockable | ValueProp.Unpowered, null, null);

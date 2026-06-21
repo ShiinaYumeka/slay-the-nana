@@ -17,9 +17,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaTricolorBone : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaTricolorBone : NanaCardModel
 {
     protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
 
@@ -29,12 +32,12 @@ public sealed class NanaTricolorBone : CardModel
 	{
 	}
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromKeyword(CardKeyword.Ethereal))];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromKeyword(CardKeyword.Exhaust))];
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
         IEnumerable<CardModel> boneCandidates =
             from c in base.Owner.Character.CardPool.GetUnlockedCards(base.Owner.UnlockState, base.Owner.RunState.CardMultiplayerConstraint)
-            where c.Tags.Contains(CustomCardTag.Bone) && c.GetType() != typeof(NanaSkullForm)
+            where c.Tags.Contains(CustomCardTag.Bone) && c.GetType() != typeof(NanaTricolorBone)
             select c;
 
         CardModel? card = CardFactory.GetDistinctForCombat(base.Owner, boneCandidates, 1, base.Owner.RunState.Rng.CombatCardGeneration).FirstOrDefault();
@@ -45,9 +48,9 @@ public sealed class NanaTricolorBone : CardModel
 
         CardCmd.Upgrade(card);
         card.SetToFreeThisTurn();
-        card.AddKeyword(CardKeyword.Ethereal);
+        card.AddKeyword(CardKeyword.Exhaust);
 
-        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, addedByPlayer: true);
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, base.Owner);
 
     }
 

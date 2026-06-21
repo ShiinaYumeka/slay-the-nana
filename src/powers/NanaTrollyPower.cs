@@ -21,7 +21,7 @@ public sealed class NanaTrollyPower : PowerModel
     public override PowerType Type => PowerType.Buff;
 
     public override PowerStackType StackType => PowerStackType.Counter;
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != base.Owner.Side)
         {
@@ -35,7 +35,7 @@ public sealed class NanaTrollyPower : PowerModel
             for (int i = 0; i<num; i++)
             {
                 Creature target = base.Owner.Player.RunState.Rng.CombatTargets.NextItem(hittableEnemies);
-                await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, base.Amount, ValueProp.Unpowered, base.Owner, null);
+                await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, base.Amount, ValueProp.Move, base.Owner, null);
             }
 
         }

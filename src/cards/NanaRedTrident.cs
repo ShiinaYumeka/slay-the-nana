@@ -10,9 +10,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaRedTrident : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaRedTrident : NanaCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Exhaust)];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(15m, ValueProp.Move), new PowerVar<WeakPower>(2m), new DynamicVar("Vulnerable", 2m)];
@@ -29,8 +32,8 @@ public sealed class NanaRedTrident : CardModel
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_flying_slash", null, null)
             .Execute(choiceContext); 
-        await PowerCmd.Apply<WeakPower>(cardPlay.Target, base.DynamicVars.Weak.BaseValue, base.Owner.Creature, this);
-        await PowerCmd.Apply<VulnerablePower>(cardPlay.Target, base.DynamicVars["Vulnerable"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<WeakPower>(choiceContext, cardPlay.Target, base.DynamicVars.Weak.BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<VulnerablePower>(choiceContext, cardPlay.Target, base.DynamicVars["Vulnerable"].BaseValue, base.Owner.Creature, this);
 
 
     }

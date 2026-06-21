@@ -9,9 +9,12 @@ using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Powers;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaWhirlwind : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaWhirlwind : NanaCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Exhaust), (CardKeyword.Ethereal)];
 
@@ -33,15 +36,23 @@ public sealed class NanaWhirlwind : CardModel
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.AttackAnimDelay);
 
         int dex = cardPlay.Target.GetPowerAmount<DexterityPower>();
+        if (dex > 4)
+        {
+            dex = 4;
+        }
+        if (dex < -4)
+        {
+            dex = -4;
+        }
         if (dex != 0)
         {
-            await PowerCmd.Apply<DexterityPower>(cardPlay.Target, -dex, base.Owner.Creature, this);
+            await PowerCmd.Apply<DexterityPower>(choiceContext, cardPlay.Target, -dex, base.Owner.Creature, this);
         }
 
         int gain = Math.Abs(dex);
         if (gain != 0)
         {
-            await PowerCmd.Apply<DexterityPower>(base.Owner.Creature, gain, base.Owner.Creature, this);
+            await PowerCmd.Apply<DexterityPower>(choiceContext, base.Owner.Creature, gain, base.Owner.Creature, this);
         }
     }
 

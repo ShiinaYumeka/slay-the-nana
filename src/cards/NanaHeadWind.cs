@@ -10,9 +10,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaHeadWind : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaHeadWind : NanaCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Exhaust)];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new PowerVar<DexterityPower>(1m)];
@@ -26,12 +29,12 @@ public sealed class NanaHeadWind : CardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<DexterityPower>(base.CombatState.Allies, base.DynamicVars.Dexterity.BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<DexterityPower>(choiceContext, base.CombatState.Allies, base.DynamicVars.Dexterity.BaseValue, base.Owner.Creature, this);
 
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Dexterity.UpgradeValueBy(1m);
+        AddKeyword(CardKeyword.Retain);
     }
 }

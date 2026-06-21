@@ -11,9 +11,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaPurpleSmoke : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaPurpleSmoke : NanaCardModel
 {
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaPurpleSmokePower", 3m)];
@@ -27,7 +30,7 @@ public sealed class NanaPurpleSmoke : CardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.AttackAnimDelay);
-        await PowerCmd.Apply<NanaPurpleSmokePower>(base.Owner.Creature, base.DynamicVars["NanaPurpleSmokePower"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<NanaPurpleSmokePower>(choiceContext, base.Owner.Creature, base.DynamicVars["NanaPurpleSmokePower"].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

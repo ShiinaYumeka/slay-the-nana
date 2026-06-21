@@ -8,11 +8,14 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Models;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaHealerSword : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaHealerSword : NanaCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6m, ValueProp.Move), new HealVar(3m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8m, ValueProp.Move), new HealVar(3m)];
 
     public NanaHealerSword()
         : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
@@ -32,7 +35,6 @@ public sealed class NanaHealerSword : CardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(2m);
-        base.DynamicVars.Heal.UpgradeValueBy(1m);
+        base.DynamicVars.Heal.UpgradeValueBy(2m);
     }
 }

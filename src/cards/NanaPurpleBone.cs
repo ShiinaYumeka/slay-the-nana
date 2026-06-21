@@ -11,9 +11,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaPurpleBone : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaPurpleBone : NanaCardModel
 {
     protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6m, ValueProp.Move), new DynamicVar("NanaKarma", 4m)];
@@ -30,7 +33,7 @@ public sealed class NanaPurpleBone : CardModel
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_flying_slash", null, null)
             .Execute(choiceContext); 
-        await PowerCmd.Apply<NanaKarma>(cardPlay.Target, base.DynamicVars["NanaKarma"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<NanaKarma>(choiceContext, cardPlay.Target, base.DynamicVars["NanaKarma"].BaseValue, base.Owner.Creature, this);
 
 
     }

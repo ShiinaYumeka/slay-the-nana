@@ -38,13 +38,21 @@ public sealed class NanaGrassBodyPower : PowerModel
 
         return 3m;
     }
-
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    
+    public override async Task AfterSideTurnStart(CombatSide side, IReadOnlyList<Creature> participants, ICombatState combatState)
+    {
+        if (side == base.Owner.Side)
+        {
+            await PowerCmd.Remove(this);
+        }
+    }
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != base.Owner.Side)
         {
             return;
         }
+        Flash();
         await CreatureCmd.GainBlock(base.Owner, base.Owner.MaxHp, ValueProp.Unpowered, null);
     }
 }

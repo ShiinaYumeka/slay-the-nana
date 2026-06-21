@@ -12,20 +12,23 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaWaterDispenser : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaWaterDispenser : NanaCardModel
 {
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaWaterDispenser", 2m)];
     public NanaWaterDispenser()
-        : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+        : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<NanaWaterDispenserPower>(base.Owner.Creature, base.DynamicVars["NanaWaterDispenser"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<NanaWaterDispenserPower>(choiceContext, base.Owner.Creature, base.DynamicVars["NanaWaterDispenser"].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

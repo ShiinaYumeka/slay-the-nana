@@ -9,9 +9,12 @@ using MegaCrit.Sts2.Core.ValueProps;
 using MegaCrit.Sts2.Core.Models;
 using SlayTheNANA.src.cardtags;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaBoneStorm : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaBoneStorm : NanaCardModel
 {
 	protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
 	protected override bool HasEnergyCostX => true;
@@ -40,5 +43,6 @@ public sealed class NanaBoneStorm : CardModel
 	protected override void OnUpgrade()
 	{
 		base.DynamicVars.Energy.UpgradeValueBy(-1m);
+		base.DynamicVars.Damage.UpgradeValueBy(2m);
 	}
 }

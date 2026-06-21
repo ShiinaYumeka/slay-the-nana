@@ -13,9 +13,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaVine: CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaVine: NanaCardModel
 {
 protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaPlantMagic", 2m)];
 
@@ -30,7 +33,7 @@ protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("Nan
     {
 
         await CreatureCmd.TriggerAnim(base.Owner.Creature, "Cast", base.Owner.Character.AttackAnimDelay);
-        await PowerCmd.Apply<NanaPlantMagic>(cardPlay.Target, base.DynamicVars["NanaPlantMagic"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<NanaPlantMagic>(choiceContext, cardPlay.Target, base.DynamicVars["NanaPlantMagic"].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

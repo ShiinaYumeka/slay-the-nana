@@ -12,16 +12,19 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaBlueBone : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaBlueBone : NanaCardModel
 {
-    protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6m, ValueProp.Move), new DynamicVar("DexterityLoss", 1m)];
+	protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(10m, ValueProp.Move), new BlockVar(10m, ValueProp.Move), new DynamicVar("DexterityLoss", 2m)];
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>())];
 
 	public NanaBlueBone()
-		: base(1, CardType.Attack, CardRarity.Common, TargetType.AllEnemies)
+		: base(2, CardType.Attack, CardRarity.Uncommon, TargetType.AllEnemies)
 	{
 	}
 
@@ -32,13 +35,14 @@ public sealed class NanaBlueBone : CardModel
 			.TargetingAllOpponents(base.CombatState)
 			.WithHitFx("vfx/vfx_flying_slash", null, null)
 			.Execute(choiceContext);
-		await PowerCmd.Apply<DexterityPower>(base.CombatState.HittableEnemies, -base.DynamicVars["DexterityLoss"].BaseValue, base.Owner.Creature, this);
+		await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
+		await PowerCmd.Apply<DexterityPower>(choiceContext, base.CombatState.HittableEnemies, -base.DynamicVars["DexterityLoss"].BaseValue, base.Owner.Creature, this);
 
 	}
 
 	protected override void OnUpgrade()
 	{
-		base.DynamicVars.Damage.UpgradeValueBy(3m);
-		base.DynamicVars["DexterityLoss"].UpgradeValueBy(1m);
+		base.DynamicVars.Damage.UpgradeValueBy(4m);
+		base.DynamicVars.Block.UpgradeValueBy(4m);
 	}
 }

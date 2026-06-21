@@ -28,7 +28,7 @@ public sealed class NanaFc: PowerModel
     {
         if (base.Owner.GetPowerAmount<NanaFc>() > 99)
         {
-            await PowerCmd.SetAmount<NanaFc>(base.Owner ,99 , base.Owner ,null);
+            await PowerCmd.ModifyAmount(new ThrowingPlayerChoiceContext(), this, 99 - base.Amount, null, null);
         }
     }
 }

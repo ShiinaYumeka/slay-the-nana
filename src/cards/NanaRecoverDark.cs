@@ -12,22 +12,25 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaRecoverDark : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaRecoverDark : NanaCardModel
 {
 
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new HealVar(10m), new PowerVar<PoisonPower>(4m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<PoisonPower>())]; 
     public NanaRecoverDark()
-        : base(0, CardType.Skill, CardRarity.Common, TargetType.Self)
+        : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<PoisonPower>(base.Owner.Creature, base.DynamicVars.Poison.BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<PoisonPower>(choiceContext, base.Owner.Creature, base.DynamicVars.Poison.BaseValue, base.Owner.Creature, this);
         await CreatureCmd.Heal(base.Owner.Creature, base.DynamicVars.Heal.BaseValue);
     }
 

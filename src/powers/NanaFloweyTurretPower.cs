@@ -29,11 +29,11 @@ public sealed class NanaFloweyTurretPower : PowerModel
     {
         if (dealer == base.Owner && props.IsPoweredAttack_())
         {
-            base.DynamicVars["AttackDamage"].BaseValue += 2;
+            base.DynamicVars["AttackDamage"].BaseValue += base.Amount;
             base.DynamicVars["AttackDamage"].PreviewValue = base.DynamicVars["AttackDamage"].BaseValue;
         }
     }
-    public override async Task AfterTurnEnd(PlayerChoiceContext choiceContext, CombatSide side)
+    public override async Task AfterSideTurnEnd(PlayerChoiceContext choiceContext, CombatSide side, IEnumerable<Creature> participants)
     {
         if (side != base.Owner.Side)
         {
@@ -43,12 +43,8 @@ public sealed class NanaFloweyTurretPower : PowerModel
         if (hittableEnemies.Count != 0)
         {
             Flash();
-            for (int i = 0; i < base.Amount; i++)
-            {
-                Creature target = base.Owner.Player.RunState.Rng.CombatTargets.NextItem(hittableEnemies);
-                await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, base.DynamicVars["AttackDamage"].BaseValue, ValueProp.Unpowered, base.Owner, null);
-
-            }
+            Creature target = base.Owner.Player.RunState.Rng.CombatTargets.NextItem(hittableEnemies);
+            await CreatureCmd.Damage(new ThrowingPlayerChoiceContext(), target, base.DynamicVars["AttackDamage"].BaseValue, ValueProp.Unpowered, base.Owner, null);
         }
         base.DynamicVars["AttackDamage"].BaseValue = 0;
         base.DynamicVars["AttackDamage"].PreviewValue = base.DynamicVars["AttackDamage"].BaseValue;

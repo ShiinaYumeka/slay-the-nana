@@ -12,20 +12,24 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaDoor : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaDoor : NanaCardModel
 {
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaDoor", 2m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(20m, ValueProp.Move), new DynamicVar("NanaDoor", 2m)];
     public NanaDoor()
-        : base(1, CardType.Power, CardRarity.Uncommon, TargetType.Self)
+        : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<NanaDoorPower>(base.Owner.Creature, base.DynamicVars["NanaDoor"].BaseValue, base.Owner.Creature, this);
+        await CreatureCmd.GainBlock(base.Owner.Creature, base.DynamicVars.Block, cardPlay);
+        await PowerCmd.Apply<NanaDoorPower>(choiceContext, base.Owner.Creature, base.DynamicVars["NanaDoor"].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

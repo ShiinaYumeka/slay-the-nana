@@ -11,9 +11,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaOrangeBone : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaOrangeBone : NanaCardModel
 {
     protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move), new DynamicVar("NanaKeepMoving", 3m)];
@@ -30,7 +33,7 @@ public sealed class NanaOrangeBone : CardModel
             .TargetingAllOpponents(base.CombatState)
             .WithHitFx("vfx/vfx_flying_slash", null, null)
             .Execute(choiceContext);
-        await PowerCmd.Apply<NanaKeepMoving>(base.CombatState.HittableEnemies, base.DynamicVars["NanaKeepMoving"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<NanaKeepMoving>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars["NanaKeepMoving"].BaseValue, base.Owner.Creature, this);
 
     }
 

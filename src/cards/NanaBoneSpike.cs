@@ -11,12 +11,15 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaBoneSpike : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaBoneSpike : NanaCardModel
 {
 	protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
-	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(4m, ValueProp.Move), new HpLossVar(1m)];
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move), new HpLossVar(1m)];
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromKeyword(CardKeyword.Ethereal)), (HoverTipFactory.FromKeyword(CardKeyword.Exhaust))];
 
 	public NanaBoneSpike()
@@ -38,7 +41,7 @@ public sealed class NanaBoneSpike : CardModel
 		cardModel.AddKeyword(CardKeyword.Exhaust);
 		cardModel.AddKeyword(CardKeyword.Ethereal);
 		cardModel.DynamicVars.HpLoss.BaseValue*=2;
-		await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, addedByPlayer: true);
+		await CardPileCmd.AddGeneratedCardToCombat(cardModel, PileType.Hand, base.Owner);
 	}
 	protected override void OnUpgrade()
 	{

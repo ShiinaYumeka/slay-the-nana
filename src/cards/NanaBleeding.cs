@@ -13,9 +13,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaBleeding: CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaBleeding: NanaCardModel
 {
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>()),(HoverTipFactory.FromPower<NanaBleedingPower>())];
 
@@ -29,7 +32,7 @@ public sealed class NanaBleeding: CardModel
 
 		if (cardPlay.Target.HasPower<NanaKarma>())
 		{
-			await PowerCmd.Apply<NanaBleedingPower>(cardPlay.Target, 3 * cardPlay.Target.GetPowerAmount<NanaKarma>(), base.Owner.Creature, this);
+			await PowerCmd.Apply<NanaBleedingPower>(choiceContext, cardPlay.Target, 3 * cardPlay.Target.GetPowerAmount<NanaKarma>(), base.Owner.Creature, this);
 			await PowerCmd.Remove<NanaKarma>(cardPlay.Target);
 		}
 	}
@@ -37,6 +40,6 @@ public sealed class NanaBleeding: CardModel
 
 	protected override void OnUpgrade()
 	{
-		base.EnergyCost.UpgradeBy(-1);
+		base.AddKeyword(CardKeyword.Retain);
 	}
 }

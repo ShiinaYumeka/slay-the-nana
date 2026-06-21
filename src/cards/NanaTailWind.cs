@@ -10,12 +10,15 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaTailWind : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaTailWind : NanaCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Exhaust)];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("DexterityLoss", 2m), new PowerVar<VulnerablePower>(1m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("DexterityLoss", 2m), new PowerVar<VulnerablePower>(2m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>()), (HoverTipFactory.FromPower<VulnerablePower>())];
 
     public NanaTailWind()
@@ -26,9 +29,9 @@ public sealed class NanaTailWind : CardModel
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<DexterityPower>(base.CombatState.HittableEnemies, -base.DynamicVars["DexterityLoss"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<DexterityPower>(choiceContext, base.CombatState.HittableEnemies, -base.DynamicVars["DexterityLoss"].BaseValue, base.Owner.Creature, this);
 
-        await PowerCmd.Apply<VulnerablePower>(base.CombatState.HittableEnemies, base.DynamicVars.Vulnerable.BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<VulnerablePower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars.Vulnerable.BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

@@ -16,16 +16,19 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaGravity : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaGravity : NanaCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new CalculationBaseVar(0m),
+        new CalculationBaseVar(5m),
         new CalculationExtraVar(1m),
-        new CalculatedVar("DexterityLoss").WithMultiplier((CardModel card, Creature? target) => (target?.GetPowerAmount<NanaKarma>()/2) ?? 0)
+        new CalculatedVar("NanaFcGain").WithMultiplier((CardModel card, Creature? target) => (target?.GetPowerAmount<NanaKarma>()) ?? 0)
         ];
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>()), (HoverTipFactory.FromPower<NanaKarma>())];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
 
     public NanaGravity()
         : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
@@ -35,12 +38,12 @@ public sealed class NanaGravity : CardModel
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
         ArgumentNullException.ThrowIfNull(cardPlay.Target, "cardPlay.Target");
-        await PowerCmd.Apply<DexterityPower>(cardPlay.Target, -((int)((CalculatedVar)base.DynamicVars["DexterityLoss"]).Calculate(cardPlay.Target)), base.Owner.Creature, this);
+        (await PowerCmd.Apply<NanaFc>(choiceContext, base.Owner.Creature, ((int)((CalculatedVar)base.DynamicVars["NanaFcGain"]).Calculate(cardPlay.Target)), base.Owner.Creature, this))?.NanaFcGain();
 
     }
 
     protected override void OnUpgrade()
     {
-        base.EnergyCost.UpgradeBy(-1);
+        base.DynamicVars.CalculationBase.UpgradeValueBy(10m);
     }
 }

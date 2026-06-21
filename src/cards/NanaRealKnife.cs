@@ -14,9 +14,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaRealKnife : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaRealKnife : NanaCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Retain)];
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(99m, ValueProp.Move)];
@@ -34,7 +37,7 @@ public sealed class NanaRealKnife : CardModel
             .Execute(choiceContext);
     }
 
-    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, CombatState combatState)
+    public override async Task BeforeHandDraw(Player player, PlayerChoiceContext choiceContext, ICombatState combatState)
     {
         CardPile? pile = base.Pile;
         if (pile != null && pile.Type == PileType.Hand && player == base.Owner)

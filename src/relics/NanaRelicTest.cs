@@ -7,24 +7,24 @@ using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
 using MegaCrit.Sts2.Core.Entities.Relics;
 using MegaCrit.Sts2.Core.GameActions.Multiplayer;
-using MegaCrit.Sts2.Core.HoverTips;
-using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Models.Cards;
 using MegaCrit.Sts2.Core.Models.Powers;
-using MegaCrit.Sts2.Core.Models.RelicPools;
 using MegaCrit.Sts2.Core.ValueProps;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SlayTheNANA;
 
-[Pool(typeof(SharedRelicPool))]
+[Pool(typeof(NanaDummyRelicPool))]
 public sealed class NanaRelicTest : CustomRelicModel
 {
 	public override RelicRarity Rarity => RelicRarity.Starter;
+
+	public override string PackedIconPath => "res://images/relics/nana_relic_test.png";
+
+	protected override string PackedIconOutlinePath => "res://images/relics/nana_relic_test.png";
+
+	protected override string BigIconPath => "res://images/relics/nana_relic_test.png";
 
 	public override async Task AfterDamageGiven(PlayerChoiceContext choiceContext, Creature? dealer, DamageResult result, ValueProp props, Creature target, CardModel? cardSource)
 	{
@@ -34,10 +34,9 @@ public sealed class NanaRelicTest : CustomRelicModel
 
 		if ((dealer == base.Owner.Creature || dealer?.PetOwner == base.Owner) && !target.IsPlayer && isNanaFcMove != true)
 		{
-			(await PowerCmd.Apply<NanaFc>(dealer, result.UnblockedDamage, base.Owner.Creature, null))?.NanaFcGain();
+			(await PowerCmd.Apply<NanaFc>(choiceContext, dealer, result.UnblockedDamage, base.Owner.Creature, null))?.NanaFcGain();
 		}
 	}
 
-	public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<NanaRelicTestPlus>().ToMutable(); // 实现方法。自己更改类型。
-
+	public override RelicModel? GetUpgradeReplacement() => ModelDb.Relic<NanaRelicTestPlus>().ToMutable();
 }

@@ -12,9 +12,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaElemental : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaElemental : NanaCardModel
 {
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(24m, ValueProp.Move), new DynamicVar("NanaFcCost", 44m), new DynamicVar("NanaElemental", 3m)];
@@ -31,16 +34,16 @@ public sealed class NanaElemental : CardModel
 
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-        await PowerCmd.Apply<NanaFc>(base.Owner.Creature, -base.DynamicVars["NanaFcCost"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<NanaFc>(choiceContext, base.Owner.Creature, -base.DynamicVars["NanaFcCost"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<PoisonPower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars["NanaElemental"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<WeakPower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars["NanaElemental"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<FrailPower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars["NanaElemental"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<VulnerablePower>(choiceContext, base.CombatState.HittableEnemies, base.DynamicVars["NanaElemental"].BaseValue, base.Owner.Creature, this);
+
         await DamageCmd.Attack(base.DynamicVars.Damage.BaseValue).FromCard(this)
             .TargetingAllOpponents(base.CombatState)
             .WithHitFx("vfx/vfx_attack_slash", null, null)
             .Execute(choiceContext);
-        await PowerCmd.Apply<PoisonPower>(base.CombatState.HittableEnemies, base.DynamicVars["NanaElemental"].BaseValue, base.Owner.Creature, this);
-        await PowerCmd.Apply<WeakPower>(base.CombatState.HittableEnemies, base.DynamicVars["NanaElemental"].BaseValue, base.Owner.Creature, this);
-        await PowerCmd.Apply<FrailPower>(base.CombatState.HittableEnemies, base.DynamicVars["NanaElemental"].BaseValue, base.Owner.Creature, this);
-        await PowerCmd.Apply<VulnerablePower>(base.CombatState.HittableEnemies, base.DynamicVars["NanaElemental"].BaseValue, base.Owner.Creature, this);
-
     }
 
 

@@ -10,20 +10,28 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaFinalTrial : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaFinalTrial : NanaCardModel
 {
 
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
+    protected override IEnumerable<IHoverTip> ExtraHoverTips =>
+    [
+        HoverTipFactory.FromPower<NanaKarma>(),
+        HoverTipFactory.FromPower<NanaFinalTrialPower>()
+    ];
+
     public NanaFinalTrial()
-		: base(3, CardType.Power, CardRarity.Rare, TargetType.AllEnemies)
+		: base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
 	{
 	}
 
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-		await PowerCmd.Apply<NanaFinalTrialPower>(base.CombatState.HittableEnemies, 1, base.Owner.Creature, this);
+		await PowerCmd.Apply<NanaFinalTrialPower>(choiceContext, base.Owner.Creature, 1, base.Owner.Creature, this);
 	}
 
 	protected override void OnUpgrade()

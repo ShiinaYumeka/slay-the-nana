@@ -25,7 +25,7 @@ public sealed class NanaDummyCardPool : CardPoolModel
 
 	protected override CardModel[] GenerateAllCards()
 	{
-		return new CardModel[80]
+		return new CardModel[87]
         {
             ModelDb.Card<NanaStrikeDummy>(),
             ModelDb.Card<NanaDefendDummy>(),
@@ -36,11 +36,16 @@ public sealed class NanaDummyCardPool : CardPoolModel
 			ModelDb.Card<NanaHealerSword>(),
 			ModelDb.Card<NanaStick>(),
 			ModelDb.Card<NanaExecute>(),
+			ModelDb.Card<NanaBladeSlash>(),
 			ModelDb.Card<NanaTrial>(),
+            ModelDb.Card<NanaVerdict>(),
+			ModelDb.Card<NanaFairTrial>(),
 			ModelDb.Card<NanaVine>(),
 			ModelDb.Card<NanaOrangeBone>(),
 			ModelDb.Card<NanaBlueBone>(),
 			ModelDb.Card<NanaBoneSpecial>(),
+			ModelDb.Card<NanaSevenBoneEqual>(),
+			ModelDb.Card<NanaWhiteBone>(),
 			ModelDb.Card<NanaSkullForm>(),
 			ModelDb.Card<NanaThreeTrial>(),
 			ModelDb.Card<NanaButter>(),
@@ -53,6 +58,7 @@ public sealed class NanaDummyCardPool : CardPoolModel
 			ModelDb.Card<NanaPurpleBone>(),
 			ModelDb.Card<NanaBoneReturn>(),
 			ModelDb.Card<NanaFinalTrial>(),
+			ModelDb.Card<NanaJudicator>(),
             ModelDb.Card<NanaBloodPool>(),
             ModelDb.Card<NanaInsanity>(),
             ModelDb.Card<NanaShiftTheBlame>(),
@@ -87,6 +93,7 @@ public sealed class NanaDummyCardPool : CardPoolModel
             ModelDb.Card<NanaHakurou>(),
             ModelDb.Card<NanaRoukan>(),
             ModelDb.Card<NanaReality>(),
+            ModelDb.Card<NanaVoidVirus>(),
             ModelDb.Card<NanaForteFc>(),
             ModelDb.Card<NanaTaj>(),
             ModelDb.Card<NanaTurret>(),

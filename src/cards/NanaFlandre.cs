@@ -12,20 +12,23 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaFlandre : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaFlandre : NanaCardModel
 {
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaFlandre", 2m)];
     public NanaFlandre()
-        : base(2, CardType.Power, CardRarity.Rare, TargetType.Self)
+        : base(1, CardType.Power, CardRarity.Rare, TargetType.Self)
     {
     }
 
     protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
     {
-        await PowerCmd.Apply<NanaFlandrePower>(base.Owner.Creature, base.DynamicVars["NanaFlandre"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<NanaFlandrePower>(choiceContext, base.Owner.Creature, base.DynamicVars["NanaFlandre"].BaseValue, base.Owner.Creature, this);
     }
 
     protected override void OnUpgrade()

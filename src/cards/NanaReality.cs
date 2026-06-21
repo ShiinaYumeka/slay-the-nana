@@ -14,9 +14,12 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaReality: CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaReality: NanaCardModel
 {
 
     protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move), new DynamicVar("NanaFcCost", 25m), new RepeatVar(4)];
@@ -32,19 +35,18 @@ public sealed class NanaReality: CardModel
 
 	protected override async Task OnPlay(PlayerChoiceContext choiceContext, CardPlay cardPlay)
 	{
-        await PowerCmd.Apply<NanaFc>(base.Owner.Creature, -base.DynamicVars["NanaFcCost"].BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<NanaFc>(choiceContext, base.Owner.Creature, -base.DynamicVars["NanaFcCost"].BaseValue, base.Owner.Creature, this);
 
         CardModel card = CardFactory.GetDistinctForCombat(base.Owner, from c in base.Owner.Character.CardPool.GetUnlockedCards(base.Owner.UnlockState, base.Owner.RunState.CardMultiplayerConstraint)
                 where c.Rarity == CardRarity.Rare
                 select c, 1, base.Owner.RunState.Rng.CombatCardGeneration).FirstOrDefault();
 
-        if (base.IsUpgraded)
-        {
-            CardCmd.Upgrade(card);
-        }
+        CardCmd.Upgrade(card);
+        CardCmd.ApplyKeyword(card, CardKeyword.Exhaust);
+
         card.SetToFreeThisCombat();
 
-        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, addedByPlayer: true);
+        await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, base.Owner);
 
     }
 

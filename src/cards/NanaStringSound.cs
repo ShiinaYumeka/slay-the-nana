@@ -10,12 +10,14 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaStringSound : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaStringSound : NanaCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6m, ValueProp.Move), new PowerVar<DexterityPower>(2m)];
-    protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>())];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7m, ValueProp.Move), new CardsVar(1)];
 
     public NanaStringSound()
         : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)
@@ -29,13 +31,12 @@ public sealed class NanaStringSound : CardModel
             .Targeting(cardPlay.Target)
             .WithHitFx("vfx/vfx_flying_slash", null, null)
             .Execute(choiceContext);
-        await PowerCmd.Apply<DexterityPower>(base.Owner.Creature, base.DynamicVars.Dexterity.BaseValue, base.Owner.Creature, this);
-        await PowerCmd.Apply<NanaSlipPower>(base.Owner.Creature, base.DynamicVars.Dexterity.BaseValue, base.Owner.Creature, this);
+        await PowerCmd.Apply<DrawCardsNextTurnPower>(choiceContext, base.Owner.Creature, base.DynamicVars.Cards.BaseValue, base.Owner.Creature, this);
 
     }
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Damage.UpgradeValueBy(3m);
+        base.DynamicVars.Cards.UpgradeValueBy(1m);
     }
 }

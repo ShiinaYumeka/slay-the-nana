@@ -8,13 +8,16 @@ using MegaCrit.Sts2.Core.Localization.DynamicVars;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.ValueProps;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaMercyWorld : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaMercyWorld : NanaCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars =>
     [
-        new DamageVar(4m, ValueProp.Move),
+        new DamageVar(3m, ValueProp.Move),
         new RepeatVar(2),
         new CardsVar(1)
     ];

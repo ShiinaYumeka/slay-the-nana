@@ -11,12 +11,15 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using MegaCrit.Sts2.Core.Models.CardPools;
+
 namespace SlayTheNANA;
 
-public sealed class NanaExecute : CardModel
+[Pool(typeof(NanaDummyCardPool))]
+public sealed class NanaExecute : NanaCardModel
 {
 	protected override IEnumerable<DynamicVar> CanonicalVars => [
-		new CalculationBaseVar(8m),
+		new CalculationBaseVar(12m),
 		new ExtraDamageVar(2m),
 		new CalculatedDamageVar(ValueProp.Move).WithMultiplier((CardModel _, Creature? target) => target?.GetPowerAmount<NanaKarma>() ?? 0)];
 
