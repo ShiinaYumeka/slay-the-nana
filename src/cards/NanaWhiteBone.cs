@@ -17,7 +17,7 @@ public sealed class NanaWhiteBone : NanaCardModel
 {
 	protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
 
-	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6m, ValueProp.Move)];
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8m, ValueProp.Move)];
 
 	public NanaWhiteBone()
 		: base(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)

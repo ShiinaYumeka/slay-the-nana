@@ -29,7 +29,16 @@ public sealed class NanaSevenBoneEqual : NanaCardModel
 		{
 			CardModel card = base.CombatState.CreateCard(ModelDb.Card<NanaWhiteBone>(), base.Owner);
 			card.SetToFreeThisTurn();
-			await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, base.Owner);
+            if (base.IsUpgraded)
+            {
+                CardCmd.Upgrade(card);
+            }
+            await CardPileCmd.AddGeneratedCardToCombat(card, PileType.Hand, base.Owner);
 		}
-	}
+    }
+    protected override void OnUpgrade()
+    {
+        AddKeyword(CardKeyword.Retain);
+    }
+
 }

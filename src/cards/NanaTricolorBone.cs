@@ -26,7 +26,7 @@ public sealed class NanaTricolorBone : NanaCardModel
 {
     protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
 
-    public bool IsNanaFcMove = true;
+    public bool IsNanaFcMove = false;
     public NanaTricolorBone()
 		: base(1, CardType.Skill, CardRarity.Uncommon, TargetType.Self)
 	{
@@ -37,7 +37,7 @@ public sealed class NanaTricolorBone : NanaCardModel
 	{
         IEnumerable<CardModel> boneCandidates =
             from c in base.Owner.Character.CardPool.GetUnlockedCards(base.Owner.UnlockState, base.Owner.RunState.CardMultiplayerConstraint)
-            where c.Tags.Contains(CustomCardTag.Bone) && c.GetType() != typeof(NanaTricolorBone)
+            where c.Tags.Contains(CustomCardTag.Bone) && c.GetType() != typeof(NanaTricolorBone) && c.Rarity != CardRarity.Token
             select c;
 
         CardModel? card = CardFactory.GetDistinctForCombat(base.Owner, boneCandidates, 1, base.Owner.RunState.Rng.CombatCardGeneration).FirstOrDefault();

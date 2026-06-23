@@ -25,25 +25,25 @@ public sealed class NanaCruelPower : PowerModel
 
     public override PowerStackType StackType => PowerStackType.Single;
 
-    public override decimal ModifyPowerAmountGivenMultiplicative(PowerModel power, Creature giver, decimal amount, Creature? target, CardModel? cardSource)
+    public override decimal ModifyPowerAmountGivenAdditive(PowerModel power, Creature giver, decimal amount, Creature? target, CardModel? cardSource)
     {
         if (!(power is NanaKarma))
         {
-            return amount;
+            return 0m;
         }
         if (giver != base.Owner)
         {
-            return amount;
+            return 0m;
         }
         if (target == base.Owner)
         {
-            return amount;
+            return 0m;
         }
         if (cardSource is NanaShiftTheBlame)
         {
-            return Math.Min(amount * 2, amount + 4);
+            return Math.Min(amount , 4m);
         }
-        return Math.Min(amount * 2, amount + 4);
+        return Math.Min(amount, 4m);
     }
     public override async Task AfterPowerAmountChanged(PlayerChoiceContext choiceContext, PowerModel power, decimal amount, Creature? applier, CardModel? cardSource)
     {
