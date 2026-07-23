@@ -16,8 +16,10 @@ namespace SlayTheNANA;
 public sealed class NanaWhiteBone : NanaCardModel
 {
 	protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
+	
+	public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Exhaust)];
 
-	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8m, ValueProp.Move)];
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7m, ValueProp.Move)];
 
 	public NanaWhiteBone()
 		: base(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
