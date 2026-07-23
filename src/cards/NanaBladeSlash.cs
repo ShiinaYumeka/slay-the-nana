@@ -50,6 +50,6 @@ public sealed class NanaBladeSlash : NanaCardModel
 
 	protected override void OnUpgrade()
 	{
-		base.DynamicVars.Damage.UpgradeValueBy(4m);
+		base.DynamicVars.Damage.UpgradeValueBy(3m);
 	}
 }
