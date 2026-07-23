@@ -33,6 +33,6 @@ public sealed class NanaBloodPool : NanaCardModel
 
 	protected override void OnUpgrade()
 	{
-		base.EnergyCost.UpgradeBy(-1);
+		base.AddKeyword(CardKeyword.Innate);
 	}
 }

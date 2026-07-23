@@ -18,7 +18,7 @@ namespace SlayTheNANA;
 public sealed class NanaFireShield: NanaCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Retain)];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(1), new BlockVar(12m, ValueProp.Move), new PowerVar<DexterityPower>(1m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new EnergyVar(2), new BlockVar(12m, ValueProp.Move), new PowerVar<DexterityPower>(1m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [base.EnergyHoverTip, (HoverTipFactory.FromPower<DexterityPower>())];
 
     public NanaFireShield()
@@ -36,7 +36,6 @@ public sealed class NanaFireShield: NanaCardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.Energy.UpgradeValueBy(1);
         base.DynamicVars.Block.UpgradeValueBy(6m);
     }
 }

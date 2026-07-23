@@ -19,7 +19,7 @@ namespace SlayTheNANA;
 public sealed class NanaOrangeBone : NanaCardModel
 {
     protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move), new DynamicVar("NanaKeepMoving", 3m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move), new DynamicVar("NanaKeepMoving", 2m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKeepMoving>())];
 
     public NanaOrangeBone()

@@ -20,7 +20,7 @@ namespace SlayTheNANA;
 public sealed class NanaDoor : NanaCardModel
 {
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(20m, ValueProp.Move), new DynamicVar("NanaDoor", 2m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new BlockVar(20m, ValueProp.Move), new DynamicVar("NanaDoor", 1m)];
     public NanaDoor()
         : base(2, CardType.Power, CardRarity.Uncommon, TargetType.Self)
     {

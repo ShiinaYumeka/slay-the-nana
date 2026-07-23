@@ -24,7 +24,7 @@ public sealed class NanaShadeSoul : NanaCardModel
     //protected override bool IsPlayable => base.Owner.Creature.GetPowerAmount<NanaFc>() >= base.DynamicVars["NanaFcCost"].BaseValue;
     protected override bool ShouldGlowGoldInternal => base.Owner.Creature.GetPowerAmount<NanaFc>() >= base.DynamicVars["NanaFcCost"].BaseValue;
 
-    public bool IsNanaFcMove = true;
+    public bool IsNanaFcMove = false;
     public NanaShadeSoul()
 		: base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 	{
@@ -37,6 +37,10 @@ public sealed class NanaShadeSoul : NanaCardModel
         {
             await PowerCmd.Apply<NanaFc>(choiceContext, base.Owner.Creature, -base.DynamicVars["NanaFcCost"].BaseValue, base.Owner.Creature, this);
             num = num + 2;
+        }
+        else
+        {
+            (await PowerCmd.Apply<NanaFc>(choiceContext, base.Owner.Creature, ((int)DynamicVars.Damage.BaseValue), base.Owner.Creature, this))?.NanaFcGain();
         }
         for (int i = 0; i < num; i++)
         {

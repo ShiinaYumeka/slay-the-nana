@@ -53,6 +53,6 @@ public sealed class NanaReality: NanaCardModel
 
     protected override void OnUpgrade()
 	{
-        base.DynamicVars["NanaFcCost"].UpgradeValueBy(-5m);
+		base.AddKeyword(CardKeyword.Retain);
     }
 }

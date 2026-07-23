@@ -41,6 +41,6 @@ public sealed class NanaThreeTrial : NanaCardModel
 
 	protected override void OnUpgrade()
 	{
-		base.DynamicVars["NanaKarma"].UpgradeValueBy(6m);
+		base.AddKeyword(CardKeyword.Retain);
     }
 }

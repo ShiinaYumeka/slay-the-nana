@@ -17,7 +17,7 @@ namespace SlayTheNANA;
 [Pool(typeof(NanaDummyCardPool))]
 public sealed class NanaStringSound : NanaCardModel
 {
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7m, ValueProp.Move), new CardsVar(1)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(8m, ValueProp.Move), new CardsVar(1)];
 
     public NanaStringSound()
         : base(1, CardType.Attack, CardRarity.Uncommon, TargetType.AnyEnemy)

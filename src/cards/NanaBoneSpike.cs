@@ -19,7 +19,7 @@ namespace SlayTheNANA;
 public sealed class NanaBoneSpike : NanaCardModel
 {
 	protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
-	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(5m, ValueProp.Move), new HpLossVar(1m)];
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(6m, ValueProp.Move), new HpLossVar(1m)];
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromKeyword(CardKeyword.Ethereal)), (HoverTipFactory.FromKeyword(CardKeyword.Exhaust))];
 
 	public NanaBoneSpike()
@@ -45,6 +45,6 @@ public sealed class NanaBoneSpike : NanaCardModel
 	}
 	protected override void OnUpgrade()
 	{
-		base.DynamicVars.Damage.UpgradeValueBy(2m);
+		base.DynamicVars.Damage.UpgradeValueBy(3m);
 	}
 }

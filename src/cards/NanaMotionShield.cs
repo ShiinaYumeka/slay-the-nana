@@ -43,6 +43,6 @@ public sealed class NanaMotionShield : NanaCardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars.CalculationBase.UpgradeValueBy(4m);
+        base.DynamicVars.CalculationBase.UpgradeValueBy(6m);
     }
 }

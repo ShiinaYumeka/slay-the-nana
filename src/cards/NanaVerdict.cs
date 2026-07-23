@@ -19,7 +19,7 @@ public sealed class NanaVerdict : NanaCardModel
 {
     protected override string PortraitFileStem => "nana_trial";
 
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaKarma", 14m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaKarma", 15m)];
 
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
 
@@ -37,6 +37,6 @@ public sealed class NanaVerdict : NanaCardModel
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["NanaKarma"].UpgradeValueBy(6m);
+        base.DynamicVars["NanaKarma"].UpgradeValueBy(5m);
     }
 }

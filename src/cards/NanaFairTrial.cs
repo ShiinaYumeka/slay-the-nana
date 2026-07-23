@@ -15,7 +15,7 @@ namespace SlayTheNANA;
 [Pool(typeof(NanaDummyCardPool))]
 public sealed class NanaFairTrial : NanaCardModel
 {
-	protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaKarma", 6m)];
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("NanaKarma", 5m)];
 
 	protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
 

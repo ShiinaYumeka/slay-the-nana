@@ -18,7 +18,7 @@ namespace SlayTheNANA;
 public sealed class NanaTailWind : NanaCardModel
 {
     public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Exhaust)];
-    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("DexterityLoss", 2m), new PowerVar<VulnerablePower>(2m)];
+    protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("DexterityLoss", 2m), new PowerVar<VulnerablePower>(1m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<DexterityPower>()), (HoverTipFactory.FromPower<VulnerablePower>())];
 
     public NanaTailWind()

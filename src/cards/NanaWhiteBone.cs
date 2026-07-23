@@ -22,7 +22,7 @@ public sealed class NanaWhiteBone : NanaCardModel
 	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7m, ValueProp.Move)];
 
 	public NanaWhiteBone()
-		: base(1, CardType.Attack, CardRarity.Token, TargetType.AnyEnemy)
+		: base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)
 	{
 	}
 

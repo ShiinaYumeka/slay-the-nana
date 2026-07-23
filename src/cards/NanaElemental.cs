@@ -49,7 +49,6 @@ public sealed class NanaElemental : NanaCardModel
 
     protected override void OnUpgrade()
 	{
-        base.DynamicVars["NanaElemental"].UpgradeValueBy(1m);
-        base.DynamicVars.Damage.UpgradeValueBy(6m);
+		base.AddKeyword(CardKeyword.Retain);
     }
 }

@@ -79,7 +79,7 @@ public sealed class NanaVoidVirus : NanaCardModel
 
 	protected override void OnUpgrade()
 	{
-		base.DynamicVars.Block.UpgradeValueBy(4m);
+		base.AddKeyword(CardKeyword.Retain);
 	}
 
 	static bool IsInDrawOrDiscardPile(CardModel? card) =>

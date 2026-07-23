@@ -38,6 +38,6 @@ public sealed class NanaTrial : NanaCardModel, ITranscendenceCard
 
     protected override void OnUpgrade()
     {
-        base.DynamicVars["NanaKarma"].UpgradeValueBy(4m);
+        base.DynamicVars["NanaKarma"].UpgradeValueBy(3m);
     }
 }

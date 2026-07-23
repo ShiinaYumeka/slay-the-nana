@@ -29,6 +29,6 @@ public sealed class NanaPocketWatch : NanaCardModel
 
     protected override void OnUpgrade()
     {
-        AddKeyword(CardKeyword.Retain);
+        AddKeyword(CardKeyword.Innate);
     }
 }
