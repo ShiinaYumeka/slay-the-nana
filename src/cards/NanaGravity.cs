@@ -31,7 +31,7 @@ public sealed class NanaGravity : NanaCardModel
     protected override IEnumerable<IHoverTip> ExtraHoverTips => [(HoverTipFactory.FromPower<NanaKarma>())];
 
     public NanaGravity()
-        : base(1, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
+        : base(0, CardType.Skill, CardRarity.Uncommon, TargetType.AnyEnemy)
     {
     }
 

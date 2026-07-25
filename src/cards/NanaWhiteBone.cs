@@ -19,7 +19,7 @@ public sealed class NanaWhiteBone : NanaCardModel
 	
 	public override IEnumerable<CardKeyword> CanonicalKeywords => [(CardKeyword.Exhaust)];
 
-	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(7m, ValueProp.Move)];
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new DamageVar(11m, ValueProp.Move)];
 
 	public NanaWhiteBone()
 		: base(1, CardType.Attack, CardRarity.Common, TargetType.AnyEnemy)

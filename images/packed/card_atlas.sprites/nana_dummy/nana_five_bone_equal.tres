@@ -1,0 +1,6 @@
+﻿[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cnanafiveboneeq1"]
+
+[ext_resource type="Texture2D" uid="uid://css5eoxa6phuk" path="res://images/packed/card_portraits/nana_dummy/nana_five_bone_equal.png" id="1_ph"]
+
+[resource]
+atlas = ExtResource("1_ph")

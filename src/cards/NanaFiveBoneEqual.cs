@@ -8,16 +8,19 @@ using MegaCrit.Sts2.Core.Models.CardPools;
 using MegaCrit.Sts2.Core.ValueProps;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using SlayTheNANA.src.cardtags;
 
 namespace SlayTheNANA;
 
 [Pool(typeof(NanaDummyCardPool))]
-public sealed class NanaSevenBoneEqual : NanaCardModel
+public sealed class NanaFiveBoneEqual : NanaCardModel
 {
-	protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("WhiteBoneCount", 7m)];
+	
+	protected override HashSet<CardTag> CanonicalTags => new HashSet<CardTag> { CustomCardTag.Bone };
+	protected override IEnumerable<DynamicVar> CanonicalVars => [new DynamicVar("WhiteBoneCount", 5m)];
     protected override IEnumerable<IHoverTip> ExtraHoverTips => (HoverTipFactory.FromCardWithCardHoverTips<NanaWhiteBone>());
 
-    public NanaSevenBoneEqual()
+    public NanaFiveBoneEqual()
 		: base(3, CardType.Skill, CardRarity.Rare, TargetType.Self)
 	{
 	}

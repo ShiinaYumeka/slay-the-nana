@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://css5eoxa6phuk"
-path="res://.godot/imported/nana_seven_bone_equal.png-9e07c0cbfeb1e867d609c3b66329df12.ctex"
+path="res://.godot/imported/nana_five_bone_equal.png-ae50876b5aa8c6a92dcaa2205694145e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/packed/card_portraits/nana_dummy/nana_seven_bone_equal.png"
-dest_files=["res://.godot/imported/nana_seven_bone_equal.png-9e07c0cbfeb1e867d609c3b66329df12.ctex"]
+source_file="res://images/packed/card_portraits/nana_dummy/nana_five_bone_equal.png"
+dest_files=["res://.godot/imported/nana_five_bone_equal.png-ae50876b5aa8c6a92dcaa2205694145e.ctex"]
 
 [params]
 

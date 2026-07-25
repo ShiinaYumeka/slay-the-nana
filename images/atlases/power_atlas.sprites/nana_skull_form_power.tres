@@ -1,0 +1,6 @@
+﻿[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://ananaskullformpwr"]
+
+[ext_resource type="Texture2D" uid="uid://cnanaskullformpwr" path="res://images/powers/nana_skull_form_power.png" id="1_ph"]
+
+[resource]
+atlas = ExtResource("1_ph")

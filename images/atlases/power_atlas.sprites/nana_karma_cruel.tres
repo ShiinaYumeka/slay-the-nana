@@ -1,6 +1,6 @@
-[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cyl0le8t5h8xs"]
+﻿[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cyl0le8t5h8xs"]
 
-[ext_resource type="Texture2D" uid="uid://dcyud0uwu0j34" path="res://images/packed/card_portraits/nana_dummy/nana_karma_cruel.png" id="1_qyod3"]
+[ext_resource type="Texture2D" uid="uid://dcyud0uwu0j34" path="res://images/powers/nana_karma_cruel.png" id="1_qyod3"]
 
 [resource]
 atlas = ExtResource("1_qyod3")

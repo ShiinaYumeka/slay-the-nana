@@ -44,7 +44,7 @@ public sealed class NanaDummyCardPool : CardPoolModel
 			ModelDb.Card<NanaOrangeBone>(),
 			ModelDb.Card<NanaBlueBone>(),
 			ModelDb.Card<NanaBoneSpecial>(),
-			ModelDb.Card<NanaSevenBoneEqual>(),
+			ModelDb.Card<NanaFiveBoneEqual>(),
 			ModelDb.Card<NanaWhiteBone>(),
 			ModelDb.Card<NanaSkullForm>(),
 			ModelDb.Card<NanaThreeTrial>(),

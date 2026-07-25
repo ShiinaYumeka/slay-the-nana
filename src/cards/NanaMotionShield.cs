@@ -24,7 +24,7 @@ namespace SlayTheNANA;
 public sealed class NanaMotionShield : NanaCardModel
 {
     protected override IEnumerable<DynamicVar> CanonicalVars => [
-        new CalculationBaseVar(10m),
+        new CalculationBaseVar(12m),
         new CalculationExtraVar(2m),
         new CalculatedBlockVar(ValueProp.Move).WithMultiplier((CardModel card, Creature? target) => card.Owner.Creature?.GetPowerAmount<DexterityPower>() ?? 0)
         ];
